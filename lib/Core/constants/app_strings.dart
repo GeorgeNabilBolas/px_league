@@ -4,6 +4,7 @@ class AppStrings {
   static const onboarding1Title = "توقع النتيجة\nأحصل على النقاط!";
   static const onboarding2Title = "العب مع اصدقائك";
   static const onboarding3Title = "شارك في الدوريات\nالخاصة والعامة، \nوتنافس على الصدارة.";
+  static const getStarted = "ابدأ الآن";
   // Auth
   static const login = "تسجيل الدخول";
   static const next = "التالي";

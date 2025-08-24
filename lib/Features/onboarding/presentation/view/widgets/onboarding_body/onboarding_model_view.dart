@@ -4,8 +4,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../../../Core/constants/app_text_styles.dart';
 import '../../../../data/models/onboarding_model.dart';
 
-class OnboardinBody extends StatelessWidget {
-  const OnboardinBody({
+class OnboardingModelView extends StatelessWidget {
+  const OnboardingModelView({
     super.key,
     required this.onboardingModel,
   });

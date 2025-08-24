@@ -1,17 +1,25 @@
 import 'package:flutter/material.dart';
 import 'Core/constants/app_colors.dart';
-import 'Features/onboarding/presentation/view/onboarding_view.dart';
+import 'Core/helpers/observer.dart';
+import 'Core/routes/app_routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final router = await AppRoutes.createRouter();
+  Bloc.observer = AppObserver();
+  runApp(MyApp(router: router));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({super.key, required this.router});
+
+  final RouterConfig<Object> router;
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: router,
       title: 'PX League',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -20,7 +28,6 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         primaryColor: AppColors.darkGreen,
       ),
-      home: const OnboardingView(),
     );
   }
 }

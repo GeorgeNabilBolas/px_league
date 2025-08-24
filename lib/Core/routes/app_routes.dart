@@ -1,12 +1,26 @@
+import 'package:go_router/go_router.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../Features/login/presentation/view/login_view.dart';
+import '../../Features/onboarding/presentation/view/onboarding_view.dart';
+
 class AppRoutes {
-  static const splash = "/splash";
-  static const login = "/login";
-  static const signup = "/signup";
-  static const resetPassword = "/reset-password";
-  static const home = "/home";
-  static const leaderboard = "/leaderboard";
-  static const tournaments = "/tournaments";
-  static const matches = "/matches";
-  static const profile = "/profile";
-  static const settings = "/settings";
+  static Future<GoRouter> createRouter() async {
+    final prefs = await SharedPreferences.getInstance();
+    final bool isOnboarded = prefs.getBool('isOnboarded') ?? false;
+
+    return GoRouter(
+      initialLocation: isOnboarded ? '/login' : '/onboarding',
+      routes: [
+        GoRoute(
+          path: '/onboarding',
+          builder: (context, state) => const OnboardingView(),
+        ),
+        GoRoute(
+          path: '/login',
+          builder: (context, state) => const LoginView(),
+        ),
+      ],
+    );
+  }
 }
