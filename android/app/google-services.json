@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "460995459007",
+    "project_id": "px-league",
+    "storage_bucket": "px-league.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:460995459007:android:5edc973a9b4eaa5a19930a",
+        "android_client_info": {
+          "package_name": "com.example.px_league"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "460995459007-lqcrpopn1mg5arimc31ap80vjmg2lirv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.px_league",
+            "certificate_hash": "2c702c4a12970a41362ffe200446c8d8ca8912cb"
+          }
+        },
+        {
+          "client_id": "460995459007-md97qtkic06jnsv60nsr9t3b0lb2vsdi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4rBC5xFhQvbnqAulBh00s77rmVKIcUW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "460995459007-md97qtkic06jnsv60nsr9t3b0lb2vsdi.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "460995459007-5ei3lp26jol02btt8mngqgr34md052f3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pxLeague"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

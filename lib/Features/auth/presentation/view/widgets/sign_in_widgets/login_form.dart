@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../../../../../../Core/constants/app_strings.dart';
+import 'login_form_button.dart';
+import '../auth_widgets/auth_email_text_field.dart';
+import '../auth_widgets/auth_password_text_field.dart';
+
+class LoginForm extends StatefulWidget {
+  const LoginForm({
+    super.key,
+  });
+
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  late GlobalKey<FormState> formKey;
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    formKey = GlobalKey<FormState>();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
+      child: Column(
+        spacing: 12.h,
+        children: [
+          AuthEmailTextField(
+            controller: emailController,
+          ),
+          AuthPasswordTextField(
+            hintText: AppStrings.password,
+            controller: passwordController,
+          ),
+          LoginFormButton(
+            formKey: formKey,
+            emailController: emailController,
+            passwordController: passwordController,
+            text: AppStrings.login,
+          ),
+        ],
+      ),
+    );
+  }
+}

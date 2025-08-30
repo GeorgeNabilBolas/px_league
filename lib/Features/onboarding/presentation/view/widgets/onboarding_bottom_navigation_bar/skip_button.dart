@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../Core/constants/app_colors.dart';
 import '../../../../../../Core/constants/app_strings.dart';
@@ -15,7 +16,9 @@ class SkipButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomButton(
-      textStyle: AppTextStyles.text16GreenBold,
+      margin: EdgeInsets.only(top: 20.h, left: 20.w),
+      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+      textStyle: AppTextStyles.text16DarkGreenW700,
       backgroundColor: AppColors.white,
       text: AppStrings.skip,
       onTap: () {

@@ -4,24 +4,37 @@ class AppStrings {
   static const onboarding1Title = "توقع النتيجة\nأحصل على النقاط!";
   static const onboarding2Title = "العب مع اصدقائك";
   static const onboarding3Title = "شارك في الدوريات\nالخاصة والعامة، \nوتنافس على الصدارة.";
-  static const getStarted = "ابدأ الآن";
-  // Auth
-  static const login = "تسجيل الدخول";
   static const next = "التالي";
   static const skip = "تخطي";
+  static const getStarted = "ابدأ الآن";
+
+  // Auth
+  static const login = "تسجيل الدخول";
+  static const loginTitle = "مرحبًا بك";
+  static const loginSubTitle =
+      "نحن متحمسون لعودتك، ولا نستطيع الانتظار لرؤية ما كنت تفعله منذ تسجيل الدخول آخر مرة.";
   static const signup = "إنشاء حساب";
+  static const signupTitle = "إنشاء حساب جديد";
+  static const orSignUp = "أو سجل الدخول عن طريق";
+  static const signupSubTitle =
+      "سجّل الآن وابدأ باستكشاف كل ما يقدمه تطبيقنا. يسعدنا انضمامك إلى مجتمعنا!";
   static const forgotPassword = "نسيت كلمة السر؟";
   static const email = "البريد الالكتروني";
   static const password = "كلمة السر";
   static const confirmPassword = "تأكيد كلمة السر";
   static const rememberMe = "تذكرني";
   static const orLoginWith = "أو سجل الدخول عن طريق";
-  static const agreeTerms =
-      "بتسجيل الدخول، فإنك توافق على الشروط والأحكام و سياسة الخصوصية الخاصة بنا.";
-  static const noAccount = "ليس لديك حساب؟ سجل الان";
+  static const agreeTermsAndConditions = " بتسجيل الدخول، فإنك توافق على ";
+  static const termsAndConditions = " الشروط والأحكام\n";
+  static const privacyPolicy = "سياسة الخصوصية";
+  static const and = "و ";
+  static const noAccount = "ليس لديك حساب؟ ";
+  static const alreadyHaveAccount = "هل لديك حساب؟ ";
   static const resetPasswordInstruction =
       "ادخل بريدك الالكتروني ثم اضغط على الزر لإرسال رابط لإعادة تعيين كلمة السر الى حسابك";
   static const send = "ارسال";
+  static const requiredEmail = 'البريد الالكتروني مطلوب';
+  static const requiredPassword = 'كلمة السر مطلوبة';
 
   // Navigation
   static const home = "الصفحة الرئيسية";

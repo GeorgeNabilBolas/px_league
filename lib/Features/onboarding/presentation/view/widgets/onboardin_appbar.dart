@@ -1,12 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
-import '../../../../../Core/constants/app_assets.dart';
 import '../../../../../Core/constants/app_colors.dart';
-import '../../../../../Core/constants/app_strings.dart';
 import '../../../../../Core/constants/app_text_styles.dart';
+import '../../../../../Core/widgets/custom_app_logo.dart';
 
 class OnboardingAppBar extends StatelessWidget implements PreferredSizeWidget {
   const OnboardingAppBar({
@@ -16,22 +12,14 @@ class OnboardingAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Row(
-        spacing: 10,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SvgPicture.asset(AppAssets.appIcon, height: kToolbarHeight * .75),
-          const Text(
-            AppStrings.appName,
-            style: AppTextStyles.text31GreenBold,
-          ),
-        ],
+      title: CustomAppLogo(
+        logoSize: kToolbarHeight * .75,
+        textStyle: AppTextStyles.text31DarkGreenW700,
       ),
       backgroundColor: AppColors.white,
     );
   }
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../Core/constants/app_colors.dart';
 import '../../../../../../Core/constants/app_strings.dart';
@@ -15,7 +16,10 @@ class NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomButton(
-      textStyle: AppTextStyles.text16WhiteBold,
+      margin: EdgeInsets.only(top: 20.h, right: 20.w),
+      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
+
+      textStyle: AppTextStyles.text16WhiteW700,
       backgroundColor: AppColors.darkGreen,
       text: AppStrings.next,
       onTap: () {
