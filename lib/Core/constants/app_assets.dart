@@ -5,4 +5,5 @@ class AppAssets {
   static const String appIcon = 'assets/icons/px_league_icon.svg';
   static const String googleIcon = 'assets/icons/google_icon.svg';
   static const String facebookIcon = 'assets/icons/facebook_icon.svg';
+  static const String anonymousIcon = 'assets/icons/anonymos_icon.svg';
 }

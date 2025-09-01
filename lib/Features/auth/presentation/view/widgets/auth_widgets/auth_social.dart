@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 
 import '../../../../../../Core/constants/app_assets.dart';
+import '../../../../../../Core/widgets/custom_icon_button.dart';
+import '../../../../../../Core/functions/custom_social_auth_func.dart';
 
 class AuthSocial extends StatelessWidget {
   const AuthSocial({
@@ -14,15 +14,13 @@ class AuthSocial extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        SvgPicture.asset(
-          AppAssets.googleIcon,
-          height: 40.h,
-          width: 40.w,
+        CustomIconButton(
+          iconPath: AppAssets.googleIcon,
+          onTap: () async => await customSocialAuthFunc(context, SocialAuthType.google),
         ),
-        SvgPicture.asset(
-          AppAssets.facebookIcon,
-          height: 40.h,
-          width: 40.w,
+        CustomIconButton(
+          iconPath: AppAssets.facebookIcon,
+          onTap: () async => await customSocialAuthFunc(context, SocialAuthType.facebook),
         ),
       ],
     );

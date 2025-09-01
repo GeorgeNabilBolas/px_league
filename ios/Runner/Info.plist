@@ -21,6 +21,24 @@
 		</array>
 		
 		<!-- End of the Google Sign-in Section -->
+
+		<!-- Facebook Sign-in Section -->
+		<key>CFBundleURLTypes</key>
+		<array>
+		<dict>
+		<key>CFBundleURLSchemes</key>
+		<array>
+			<string>fb1444451733520779</string>
+		</array>
+		</dict>
+		</array>
+		<key>FacebookAppID</key>
+		<string>1444451733520779</string>
+		<key>FacebookClientToken</key>
+		<string>b1dc4074fd9555f974bd95bb075815f6</string>
+		<key>FacebookDisplayName</key>
+		<string>Px League</string>
+		<!-- End of the Facebook Sign-in Section -->
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>

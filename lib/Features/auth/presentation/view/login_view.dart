@@ -8,7 +8,7 @@ import 'widgets/auth_widgets/auth_intro.dart';
 import 'widgets/auth_widgets/auth_social.dart';
 import 'widgets/auth_widgets/auth_with.dart';
 import 'widgets/auth_widgets/policies_and_terms.dart';
-import 'widgets/sign_in_widgets/login_form.dart';
+import 'widgets/login_widgets/login_form.dart';
 import 'widgets/auth_widgets/auth_switcher.dart';
 
 class LoginView extends StatelessWidget {
