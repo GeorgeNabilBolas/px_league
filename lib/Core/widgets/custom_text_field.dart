@@ -24,7 +24,9 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       obscureText: obscureText ?? false,
-      onTapOutside: (event) => FocusScope.of(context).unfocus(),
+      onTapOutside: (event) {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
       validator: validatorFunc,
       style: AppTextStyles.text16DarkGreenW700,
       controller: controller,

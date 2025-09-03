@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../../../Core/errors/firebase_exceptions/auth_exceptions.dart';
 import '../../../../Core/errors/firebase_exceptions/handle_auth_exceptions.dart';
+import '../../../../Core/helpers/Internet_handler.dart';
 import '../../../../Core/networking/auth_result.dart';
 import 'auth_repo.dart';
 
@@ -17,10 +21,6 @@ class AuthRepoImp implements AuthRepo {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
   final FacebookAuth _facebookAuth;
-  @override
-  User? getCurrentUser() {
-    return _firebaseAuth.currentUser;
-  }
 
   @override
   Future<AuthResult<UserCredential>> signUpWithEmailAndPassword(
@@ -78,14 +78,5 @@ class AuthRepoImp implements AuthRepo {
     } catch (e) {
       return AuthFailure<UserCredential>(HandleAuthExceptions.getAuthExceptionType(e));
     }
-  }
-
-  @override
-  Future<void> signOut() async {
-    await Future.wait([
-      _firebaseAuth.signOut(),
-      _googleSignIn.signOut(),
-      _facebookAuth.logOut(),
-    ]);
   }
 }

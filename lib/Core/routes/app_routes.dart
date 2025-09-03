@@ -4,4 +4,5 @@ class AppRoutes {
   static const String privacyRoute = '/privacy';
   static const String loginRoute = '/login';
   static const String signupRoute = '/signup';
+  static const String userProfileRoute = '/user-profile';
 }

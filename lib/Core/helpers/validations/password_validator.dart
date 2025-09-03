@@ -9,7 +9,7 @@ class PasswordValidator {
     SpecialCharValidationRule(),
   ];
 
-  static bool validate(String password) {
+  static bool isValid(String password) {
     return _defaultRules.every((rule) => rule.validate(password));
   }
 

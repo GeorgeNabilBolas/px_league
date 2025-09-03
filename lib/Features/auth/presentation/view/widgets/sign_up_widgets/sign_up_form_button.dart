@@ -1,11 +1,13 @@
-import 'dart:developer';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../Core/constants/app_colors.dart';
 import '../../../../../../Core/constants/app_text_styles.dart';
+import '../../../../../../Core/helpers/custom_ar_snackbar.dart';
+import '../../../../../../Core/helpers/custom_auth_handler.dart';
+import '../../../../data/models/auth_type.dart';
+import '../../../../../../Core/routes/app_routes.dart';
 import '../../../../../../Core/widgets/custom_button.dart';
 import '../../../cubit/auth/auth_cubit.dart';
 
@@ -30,7 +32,24 @@ class SignUpFormButton extends StatelessWidget {
     return CustomButton(
       padding: const EdgeInsets.all(16),
       text: text,
-      onTap: () async {},
+      onTap: () async {
+        final password = passwordController.text;
+        final confirmPassword = confirmPasswordController.text;
+        final email = emailController.text;
+        final isValid = formKey.currentState!.validate();
+        if (isValid) {
+          if (password != confirmPassword) {
+            customArSnackBar(context, 'كلمة السر غير متطابقة');
+          } else {
+            customAuthHandler(
+              context,
+              type: SocialAuthType.signupWithEmailAndPassword,
+              email: email,
+              password: password,
+            );
+          }
+        }
+      },
       width: double.infinity,
       textStyle: AppTextStyles.text16WhiteW700,
       backgroundColor: AppColors.darkGreen,

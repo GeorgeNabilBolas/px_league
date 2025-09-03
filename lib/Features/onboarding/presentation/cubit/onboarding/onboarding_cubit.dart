@@ -29,15 +29,13 @@ class OnboardingCubit extends Cubit<int> {
     emit(pageIndex);
   }
 
-  void getStarted() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool('isOnboarded', true);
-  }
-
   bool get isLastPage => state == onboardingModelList.length - 1;
 
   @override
-  Future<void> close() {
+  Future<void> close() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isOnboarded', true);
+    print('isOnboarded: ${prefs.getBool('isOnboarded')}');
     pageController.dispose();
     return super.close();
   }

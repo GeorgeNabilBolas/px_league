@@ -1,7 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../../Core/constants/app_strings.dart';
+import '../../../../Core/constants/app_text_styles.dart';
 import '../../../../Core/routes/app_routes.dart';
 import 'auth_view.dart';
 import 'widgets/auth_widgets/auth_intro.dart';

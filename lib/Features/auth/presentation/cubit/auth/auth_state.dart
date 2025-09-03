@@ -8,11 +8,10 @@ final class AuthInitial extends AuthState {}
 final class AuthLoading extends AuthState {}
 
 final class AuthSuccess extends AuthState {
-  final UserCredential userCredential;
-  AuthSuccess(this.userCredential);
+  AuthSuccess();
 }
 
 final class AuthFailure extends AuthState {
-  final AuthException exception;
   AuthFailure(this.exception);
+  final AuthException exception;
 }

@@ -17,6 +17,8 @@ class HandleAuthExceptions {
         return const WeakPasswordException();
       case 'invalid-email':
         return const InvalidEmailException();
+      case 'invalid-credential':
+        return const InvalidCredentialException();
       case 'user-disabled':
         return const UserDisabledException();
       case 'too-many-requests':

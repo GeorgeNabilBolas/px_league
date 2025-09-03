@@ -22,10 +22,7 @@ class GetStartedButton extends StatelessWidget {
       textStyle: AppTextStyles.text16WhiteW700,
       backgroundColor: AppColors.darkGreen,
       text: AppStrings.getStarted,
-      onTap: () {
-        context.read<OnboardingCubit>().getStarted();
-        context.go(AppRoutes.signupRoute);
-      },
+      onTap: () => context.go(AppRoutes.signupRoute),
       width: double.infinity,
     );
   }

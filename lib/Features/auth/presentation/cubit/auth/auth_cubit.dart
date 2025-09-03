@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../../Core/errors/firebase_exceptions/auth_exceptions.dart';
+import '../../../../../Core/errors/firebase_exceptions/handle_auth_exceptions.dart';
 import '../../../data/repo/auth_repo.dart';
 
 part 'auth_state.dart';
@@ -15,7 +15,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     final result = await authRepo.signInWithGoogle();
     result.when(
-      onSuccess: (userCredential) => emit(AuthSuccess(userCredential)),
+      onSuccess: (userCredential) => emit(AuthSuccess()),
       onFailure: (exception) => emit(AuthFailure(exception)),
     );
   }
@@ -24,7 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     final result = await authRepo.signInWithFacebook();
     result.when(
-      onSuccess: (userCredential) => emit(AuthSuccess(userCredential)),
+      onSuccess: (userCredential) => emit(AuthSuccess()),
       onFailure: (exception) => emit(AuthFailure(exception)),
     );
   }
@@ -33,7 +33,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     final result = await authRepo.logInWithEmailAndPassword(email, password);
     result.when(
-      onSuccess: (userCredential) => emit(AuthSuccess(userCredential)),
+      onSuccess: (userCredential) => emit(AuthSuccess()),
       onFailure: (exception) => emit(AuthFailure(exception)),
     );
   }
@@ -42,14 +42,8 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     final result = await authRepo.signUpWithEmailAndPassword(email, password);
     result.when(
-      onSuccess: (userCredential) => emit(AuthSuccess(userCredential)),
+      onSuccess: (userCredential) => emit(AuthSuccess()),
       onFailure: (exception) => emit(AuthFailure(exception)),
     );
-  }
-
-  Future<void> signOut() async {
-    emit(AuthLoading());
-    await authRepo.signOut();
-    emit(AuthInitial());
   }
 }

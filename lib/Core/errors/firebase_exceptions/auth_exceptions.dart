@@ -39,6 +39,12 @@ class UserDisabledException extends AuthException {
   String get message => 'هذا الحساب تم تعطيله';
 }
 
+class InvalidCredentialException extends AuthException {
+  const InvalidCredentialException() : super();
+  @override
+  String get message => 'البريد الالكتروني أو كلمة المرور غير صحيحين أو غير موجودين';
+}
+
 class TooManyRequestsException extends AuthException {
   const TooManyRequestsException() : super();
   @override
@@ -49,6 +55,12 @@ class NetworkRequestFailedException extends AuthException {
   const NetworkRequestFailedException() : super();
   @override
   String get message => 'الاتصال بالانترنت ضعيف';
+}
+
+class NoInternetException extends AuthException {
+  const NoInternetException() : super();
+  @override
+  String get message => 'لا يوجد اتصال بالانترنت';
 }
 
 class UnexpectedErrorException extends AuthException {
@@ -73,7 +85,7 @@ class CanceledException extends AuthException {
 class InterruptedException extends AuthException {
   const InterruptedException() : super();
   @override
-  String get message => 'العملية تم إلغاؤها';
+  String get message => 'العملية تم إلغاؤها لسبب غير معروف';
 }
 
 class ClientConfigurationErrorException extends AuthException {

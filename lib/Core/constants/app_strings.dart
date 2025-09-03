@@ -18,7 +18,6 @@ class AppStrings {
   static const orSignUp = "أو سجل الدخول عن طريق";
   static const signupSubTitle =
       "سجّل الآن وابدأ باستكشاف كل ما يقدمه تطبيقنا. يسعدنا انضمامك إلى مجتمعنا!";
-  static const forgotPassword = "نسيت كلمة السر؟";
   static const email = "البريد الالكتروني";
   static const password = "كلمة السر";
   static const confirmPassword = "تأكيد كلمة السر";
@@ -35,7 +34,10 @@ class AppStrings {
   static const send = "ارسال";
   static const requiredEmail = 'البريد الالكتروني مطلوب';
   static const requiredPassword = 'كلمة السر مطلوبة';
-
+  static const forgotPasswordTitle = "نسيت كلمة السر؟";
+  static const forgotPasswordSubTitle =
+      "ادخل بريدك الالكتروني ثم اضغط على الزر لإرسال رابط لإعادة تعيين كلمة السر الى حسابك";
+  static const resetPassword = "إعادة تعيين كلمة السر";
   // Navigation
   static const home = "الصفحة الرئيسية";
   static const leaderboard = "لوحة المتصدرين";

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../Core/constants/app_strings.dart';
+import '../../../../../../Core/helpers/validations/password_validator.dart';
 import '../../../../../../Core/widgets/custom_text_field.dart';
 
 class AuthPasswordTextField extends StatefulWidget {
@@ -32,6 +33,9 @@ class _AuthPasswordTextFieldState extends State<AuthPasswordTextField> {
       validatorFunc: (value) {
         if (value!.isEmpty) {
           return AppStrings.requiredPassword;
+        }
+        if (!PasswordValidator.isValid(value)) {
+          return PasswordValidator.getValidationErrors(value).join('\n');
         }
         return null;
       },

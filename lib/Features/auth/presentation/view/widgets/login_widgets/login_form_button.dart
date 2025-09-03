@@ -1,16 +1,10 @@
-import 'dart:developer';
-import 'dart:io';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../Core/constants/app_colors.dart';
 import '../../../../../../Core/constants/app_text_styles.dart';
 import '../../../../../../Core/widgets/custom_button.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-
-import '../../../cubit/auth/auth_cubit.dart';
+import '../../../../../../Core/helpers/custom_auth_handler.dart';
+import '../../../../data/models/auth_type.dart';
 
 class LoginFormButton extends StatelessWidget {
   const LoginFormButton({
@@ -32,12 +26,14 @@ class LoginFormButton extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       text: text,
       onTap: () async {
-        await BlocProvider.of<AuthCubit>(context).signInWithFacebook();
-        if (BlocProvider.of<AuthCubit>(context).state is AuthSuccess) {
-          print((BlocProvider.of<AuthCubit>(context).state as AuthSuccess).userCredential);
-        }
-        if (BlocProvider.of<AuthCubit>(context).state is AuthFailure) {
-          log((BlocProvider.of<AuthCubit>(context).state as AuthFailure).exception.message);
+        final isValid = formKey.currentState!.validate();
+        if (isValid) {
+          customAuthHandler(
+            context,
+            type: SocialAuthType.loginWithEmailAndPassword,
+            email: emailController.text,
+            password: passwordController.text,
+          );
         }
       },
       width: double.infinity,
