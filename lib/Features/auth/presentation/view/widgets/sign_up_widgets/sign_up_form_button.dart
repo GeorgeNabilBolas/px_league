@@ -1,31 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../../../Core/constants/app_colors.dart';
 import '../../../../../../Core/constants/app_text_styles.dart';
+import '../../../../../../Core/di/di.dart';
 import '../../../../../../Core/helpers/custom_ar_snackbar.dart';
 import '../../../../../../Core/helpers/custom_auth_handler.dart';
-import '../../../../data/models/auth_type.dart';
-import '../../../../../../Core/routes/app_routes.dart';
+import '../../../../../../Core/models/auth_modal.dart';
 import '../../../../../../Core/widgets/custom_button.dart';
-import '../../../cubit/auth/auth_cubit.dart';
 
 class SignUpFormButton extends StatelessWidget {
   const SignUpFormButton({
     super.key,
-    required this.formKey,
     required this.text,
+    required this.formKey,
     required this.emailController,
     required this.passwordController,
     required this.confirmPasswordController,
   });
 
   final GlobalKey<FormState> formKey;
-  final String text;
   final TextEditingController emailController;
   final TextEditingController passwordController;
   final TextEditingController confirmPasswordController;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +40,11 @@ class SignUpFormButton extends StatelessWidget {
           } else {
             customAuthHandler(
               context,
-              type: SocialAuthType.signupWithEmailAndPassword,
-              email: email,
-              password: password,
+              authModal: AuthModal(
+                type: SocialAuthType.signupWithEmailAndPassword,
+                email: email,
+                password: password,
+              ),
             );
           }
         }

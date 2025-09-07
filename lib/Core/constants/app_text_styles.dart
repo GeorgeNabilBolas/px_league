@@ -9,9 +9,19 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.darkGreen,
   );
+  static TextStyle text12WhiteW400 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w400,
+    color: AppColors.white,
+  );
   static TextStyle text12MediumGreenW900 = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w900,
+    color: AppColors.mediumGreen,
+  );
+  static TextStyle text12MediumGreenW700 = TextStyle(
+    fontSize: 12.sp,
+    fontWeight: FontWeight.w700,
     color: AppColors.mediumGreen,
   );
   static TextStyle text14DarkGreenW400 = TextStyle(
@@ -19,6 +29,17 @@ class AppTextStyles {
     fontWeight: FontWeight.w400,
     color: AppColors.darkGreen,
   );
+  static TextStyle text14MediumGreenW700 = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.mediumGreen,
+  );
+  static TextStyle text14WhiteW700 = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.white,
+  );
+
   static TextStyle text16DarkGreenW700 = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight.w700,
@@ -33,6 +54,11 @@ class AppTextStyles {
     fontSize: 16.sp,
     fontWeight: FontWeight.w700,
     color: AppColors.mediumGreen,
+  );
+  static TextStyle text18DarkGreenW700 = TextStyle(
+    fontSize: 18.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.darkGreen,
   );
   static TextStyle text24DarkGreenW700 = TextStyle(
     fontSize: 24.sp,

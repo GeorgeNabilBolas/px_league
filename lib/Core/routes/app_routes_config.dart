@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,7 +55,6 @@ Future<String> initialRoute() async {
 
   final bool isOnboarded = prefs.getBool('isOnboarded') ?? false;
   final bool isLoggedIn = FirebaseAuth.instance.currentUser != null;
-
   if (isOnboarded && isLoggedIn) {
     return AppRoutes.userProfileRoute;
   } else if (isOnboarded && !isLoggedIn) {

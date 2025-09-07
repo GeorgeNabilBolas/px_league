@@ -10,8 +10,8 @@ import '../../../../Core/helpers/Internet_handler.dart';
 import '../../../../Core/networking/auth_result.dart';
 import 'auth_repo.dart';
 
-class AuthRepoImp implements AuthRepo {
-  const AuthRepoImp({
+class AuthRepoImpl implements AuthRepo {
+  const AuthRepoImpl({
     required FirebaseAuth firebaseAuth,
     required GoogleSignIn googleSignIn,
     required FacebookAuth facebookAuth,
@@ -70,13 +70,22 @@ class AuthRepoImp implements AuthRepo {
   @override
   Future<AuthResult<UserCredential>> signInWithGoogle() async {
     try {
-      await _googleSignIn.initialize();
       final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
       final GoogleSignInAuthentication googleAuth = googleUser.authentication;
       final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
       return AuthSuccess<UserCredential>(await _firebaseAuth.signInWithCredential(credential));
     } catch (e) {
       return AuthFailure<UserCredential>(HandleAuthExceptions.getAuthExceptionType(e));
+    }
+  }
+
+  @override
+  Future<AuthResult<void>> resetPassword(String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      return AuthSuccess<void>(null);
+    } catch (e) {
+      return AuthFailure<void>(HandleAuthExceptions.getAuthExceptionType(e));
     }
   }
 }

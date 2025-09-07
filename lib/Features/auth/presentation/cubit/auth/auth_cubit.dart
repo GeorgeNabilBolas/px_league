@@ -15,7 +15,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     final result = await authRepo.signInWithGoogle();
     result.when(
-      onSuccess: (userCredential) => emit(AuthSuccess()),
+      onSuccess: (_) => emit(AuthSuccess()),
       onFailure: (exception) => emit(AuthFailure(exception)),
     );
   }
@@ -24,7 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     final result = await authRepo.signInWithFacebook();
     result.when(
-      onSuccess: (userCredential) => emit(AuthSuccess()),
+      onSuccess: (_) => emit(AuthSuccess()),
       onFailure: (exception) => emit(AuthFailure(exception)),
     );
   }
@@ -33,7 +33,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     final result = await authRepo.logInWithEmailAndPassword(email, password);
     result.when(
-      onSuccess: (userCredential) => emit(AuthSuccess()),
+      onSuccess: (_) => emit(AuthSuccess()),
       onFailure: (exception) => emit(AuthFailure(exception)),
     );
   }
@@ -42,7 +42,16 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     final result = await authRepo.signUpWithEmailAndPassword(email, password);
     result.when(
-      onSuccess: (userCredential) => emit(AuthSuccess()),
+      onSuccess: (_) => emit(AuthSuccess()),
+      onFailure: (exception) => emit(AuthFailure(exception)),
+    );
+  }
+
+  Future<void> resetPassword(String email) async {
+    emit(AuthLoading());
+    final result = await authRepo.resetPassword(email);
+    result.when(
+      onSuccess: (_) => emit(AuthSuccess()),
       onFailure: (exception) => emit(AuthFailure(exception)),
     );
   }

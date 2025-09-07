@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../Core/constants/app_colors.dart';
 import '../../../../../../Core/constants/app_text_styles.dart';
+import '../../../../../../Core/di/di.dart';
+import '../../../../../../Core/models/auth_modal.dart';
 import '../../../../../../Core/widgets/custom_button.dart';
 import '../../../../../../Core/helpers/custom_auth_handler.dart';
-import '../../../../data/models/auth_type.dart';
 
 class LoginFormButton extends StatelessWidget {
   const LoginFormButton({
@@ -30,9 +31,11 @@ class LoginFormButton extends StatelessWidget {
         if (isValid) {
           customAuthHandler(
             context,
-            type: SocialAuthType.loginWithEmailAndPassword,
-            email: emailController.text,
-            password: passwordController.text,
+            authModal: AuthModal(
+              type: SocialAuthType.loginWithEmailAndPassword,
+              email: emailController.text,
+              password: passwordController.text,
+            ),
           );
         }
       },

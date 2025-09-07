@@ -6,8 +6,9 @@ import 'package:go_router/go_router.dart';
 import '../../../../../../../Core/constants/app_colors.dart';
 import '../../../../../../../Core/constants/app_strings.dart';
 import '../../../../../../../Core/constants/app_text_styles.dart';
-import '../../../../../../../Core/errors/firebase_exceptions/handle_auth_exceptions.dart';
 import '../../../../../../../Core/helpers/custom_ar_snackbar.dart';
+import '../../../../../../../Core/helpers/custom_auth_handler.dart';
+import '../../../../../../../Core/models/auth_modal.dart';
 import '../../../../../../../Core/widgets/custom_button.dart';
 import '../auth_email_text_field.dart';
 
@@ -55,11 +56,15 @@ class _ResetPassBottomSheetBodyState extends State<ResetPassBottomSheetBody> {
             controller: emailController,
           ),
           CustomButton(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             text: AppStrings.send,
-            onTap: () async {
-              await _handlePasswordReset(context, emailController.text);
-            },
+            onTap: () async => customAuthHandler(
+              context,
+              authModal: AuthModal(
+                type: SocialAuthType.resetPassword,
+                email: emailController.text,
+              ),
+            ),
             width: double.infinity,
             textStyle: AppTextStyles.text16WhiteW700,
             backgroundColor: AppColors.darkGreen,
@@ -68,31 +73,4 @@ class _ResetPassBottomSheetBodyState extends State<ResetPassBottomSheetBody> {
       ),
     );
   }
-}
-
-Future<void> _handlePasswordReset(BuildContext context, String email) async {
-  try {
-    final auth = FirebaseAuth.instance;
-    await auth.sendPasswordResetEmail(email: email);
-    if (!context.mounted) return;
-    _showResetSuccessMessage(context);
-  } catch (e) {
-    if (!context.mounted) return;
-    _showResetFailedMessage(context, e);
-  }
-}
-
-void _showResetFailedMessage(BuildContext context, Object e) {
-  customArSnackBar(
-    context,
-    HandleAuthExceptions.getAuthExceptionType(e).message,
-  );
-}
-
-void _showResetSuccessMessage(BuildContext context) {
-  customArSnackBar(
-    context,
-    'تم إرسال رابط إعادة التعيين إلى بريدك الإلكتروني',
-  );
-  context.pop();
 }

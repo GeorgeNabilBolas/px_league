@@ -25,12 +25,9 @@ class LoginView extends StatelessWidget {
         spacing: 16.h,
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
-          AuthIntro(
-            title: AppStrings.loginTitle,
-            subTitle: AppStrings.loginSubTitle,
-          ),
+          AuthIntro(title: AppStrings.loginTitle, subTitle: AppStrings.loginSubTitle),
           LoginForm(),
-          AuthWith(title: AppStrings.orSignUp),
+          AuthWith(),
           AuthSocial(),
           PoliciesAndTerms(),
           AuthSwitcher(

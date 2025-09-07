@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../Core/constants/app_colors.dart';
+import '../../../../../../Core/constants/app_strings.dart';
 import '../../../../../../Core/constants/app_text_styles.dart';
 
 class AuthWith extends StatelessWidget {
   const AuthWith({
     super.key,
-    required this.title,
   });
-  final String title;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -21,7 +20,7 @@ class AuthWith extends StatelessWidget {
           ),
         ),
         Text(
-          title,
+          AppStrings.orLoginWith,
           style: AppTextStyles.text12DarkGreenW400,
         ),
         const Expanded(

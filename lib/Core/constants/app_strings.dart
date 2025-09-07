@@ -24,9 +24,9 @@ class AppStrings {
   static const rememberMe = "تذكرني";
   static const orLoginWith = "أو سجل الدخول عن طريق";
   static const agreeTermsAndConditions = " بتسجيل الدخول، فإنك توافق على ";
-  static const termsAndConditions = " الشروط والأحكام\n";
+  static const termsAndConditions = " الشروط والأحكام";
   static const privacyPolicy = "سياسة الخصوصية";
-  static const and = "و ";
+  static const and = "\nو ";
   static const noAccount = "ليس لديك حساب؟ ";
   static const alreadyHaveAccount = "هل لديك حساب؟ ";
   static const resetPasswordInstruction =
@@ -66,6 +66,7 @@ class AppStrings {
   static const name = "الاسم";
   static const birthDate = "تاريخ الميلاد";
   static const accuracy = "الدقة";
+  static const attempts = "المحاولات";
   static const edit = "تعديل";
   static const privacy = "الخصوصية والأمان";
   static const support = "الدعم والمساعدة";
@@ -73,4 +74,8 @@ class AppStrings {
   static const logout = "تسجيل الخروج";
   static const shareApp = "شارك التطبيق";
   static const deleteAccount = "حذف الحساب";
+  static const deleteAccountAlert = "عند حذف حسابك سيتم حذف جميع البيانات الخاصة بك.";
+  static const cancel = "الغاء";
+  static const deleteAccountTitle = "هل انت متأكد؟";
+  static const deleteAccountButton = "حذف الحساب";
 }

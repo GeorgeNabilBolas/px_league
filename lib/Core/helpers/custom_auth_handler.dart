@@ -1,32 +1,36 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../Features/auth/presentation/cubit/auth/auth_cubit.dart';
+import '../di/di.dart';
 import '../errors/firebase_exceptions/auth_exceptions.dart';
+import '../models/auth_modal.dart';
 import '../routes/app_routes.dart';
 import 'custom_ar_snackbar.dart';
 import 'Internet_handler.dart';
 
 Future<void> customAuthHandler(
   BuildContext context, {
-  required SocialAuthType type,
-  String? email,
-  String? password,
+  required AuthModal authModal,
 }) async {
   _checkInternetConnection(context);
   final authCubit = BlocProvider.of<AuthCubit>(context);
-  if (authCubit.state is AuthLoading || authCubit.state is AuthSuccess) return;
-  _handleAuthStates(context);
-  _selectAuthType(context, type, email, password);
+  if (authCubit.state is AuthLoading || authCubit.state is AuthSuccess) {
+    return;
+  }
+  _handleAuthStates(context, authModal.type);
+  _selectAuthType(context, authModal);
 }
 
-void _selectAuthType(BuildContext context, SocialAuthType type, String? email, String? password) {
+void _selectAuthType(BuildContext context, AuthModal authModal) {
   final authCubit = BlocProvider.of<AuthCubit>(context);
 
-  switch (type) {
+  switch (authModal.type) {
     case SocialAuthType.google:
       authCubit.signInWithGoogle();
       break;
@@ -34,15 +38,18 @@ void _selectAuthType(BuildContext context, SocialAuthType type, String? email, S
       authCubit.signInWithFacebook();
       break;
     case SocialAuthType.signupWithEmailAndPassword:
-      authCubit.signUpWithEmailAndPassword(email!, password!);
+      authCubit.signUpWithEmailAndPassword(authModal.email!, authModal.password!);
       break;
     case SocialAuthType.loginWithEmailAndPassword:
-      authCubit.logInWithEmailAndPassword(email!, password!);
+      authCubit.logInWithEmailAndPassword(authModal.email!, authModal.password!);
+      break;
+    case SocialAuthType.resetPassword:
+      authCubit.resetPassword(authModal.email!);
       break;
   }
 }
 
-void _handleAuthStates(BuildContext context) {
+void _handleAuthStates(BuildContext context, SocialAuthType type) {
   final authCubit = BlocProvider.of<AuthCubit>(context);
   final stateStream = authCubit.stream;
   late StreamSubscription subscription;
@@ -60,12 +67,32 @@ void _handleAuthStates(BuildContext context) {
           subscription.cancel();
           break;
         case AuthSuccess():
-          context.go(AppRoutes.userProfileRoute);
-          subscription.cancel();
+          _authSuccessHandler(context, subscription, type);
           break;
       }
     }
   });
+}
+
+void _authSuccessHandler(
+  BuildContext context,
+  StreamSubscription<dynamic> subscription,
+  SocialAuthType type,
+) {
+  if (type == SocialAuthType.resetPassword) {
+    _resetPasswordSuccessHandler(context);
+  } else {
+    final users = getIt.get<FirebaseFirestore>().collection('users');
+    final userDoc = users.doc(getIt.get<FirebaseAuth>().currentUser!.uid);
+    userDoc.set({}, SetOptions(merge: true));
+    context.go(AppRoutes.userProfileRoute);
+  }
+  subscription.cancel();
+}
+
+void _resetPasswordSuccessHandler(BuildContext context) {
+  customArSnackBar(context, 'تم ارسال رابط التحقق إلى بريدك الالكتروني');
+  Navigator.pop(context);
 }
 
 void _checkInternetConnection(BuildContext context) async {
@@ -74,11 +101,4 @@ void _checkInternetConnection(BuildContext context) async {
   if (!internetAvailable) {
     customArSnackBar(context, const NoInternetException().message);
   }
-}
-
-enum SocialAuthType {
-  google,
-  facebook,
-  signupWithEmailAndPassword,
-  loginWithEmailAndPassword,
 }

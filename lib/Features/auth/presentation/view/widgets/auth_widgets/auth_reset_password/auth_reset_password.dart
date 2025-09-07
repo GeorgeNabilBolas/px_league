@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../../../../../Core/constants/app_strings.dart';
 import '../../../../../../../Core/constants/app_text_styles.dart';
+import '../../../../../../../Core/di/di.dart';
+import '../../../../../data/repo/auth_repo.dart';
+import '../../../../cubit/auth/auth_cubit.dart';
 import 'reset_pass_bottom_sheet.dart';
 
 class AuthResetPass extends StatelessWidget {
@@ -33,7 +40,10 @@ Future<void> showResetPassModalSheet(BuildContext context) async {
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
     builder: (BuildContext context) {
-      return const ResetPassBottomSheetView();
+      return BlocProvider(
+        create: (context) => AuthCubit(getIt.get<AuthRepo>()),
+        child: const ResetPassBottomSheetView(),
+      );
     },
   );
 }

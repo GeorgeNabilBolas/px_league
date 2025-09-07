@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'Core/constants/app_colors.dart';
+import 'Core/di/di.dart';
 import 'Core/helpers/observer.dart';
 import 'Core/routes/app_routes_config.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +12,10 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await GoogleSignIn.instance.initialize();
   final router = await AppRoutesConfig.createRouter();
   Bloc.observer = AppObserver();
+  setupDI();
   runApp(MyApp(router: router));
 }
 

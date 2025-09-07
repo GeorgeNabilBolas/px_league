@@ -23,12 +23,9 @@ class SignUpView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         spacing: 16.h,
         children: const [
-          AuthIntro(
-            title: AppStrings.signupTitle,
-            subTitle: AppStrings.signupSubTitle,
-          ),
+          AuthIntro(title: AppStrings.signupTitle, subTitle: AppStrings.signupSubTitle),
           SignUpForm(),
-          AuthWith(title: AppStrings.orSignUp),
+          AuthWith(),
           AuthSocial(),
           PoliciesAndTerms(),
           AuthSwitcher(

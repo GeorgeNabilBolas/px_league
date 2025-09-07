@@ -1,11 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../data/repo/auth_repo_imp.dart';
+import '../../../../Core/di/di.dart';
+import '../../data/repo/auth_repo.dart';
 import '../cubit/auth/auth_cubit.dart';
 import 'widgets/auth_widgets/auth_appbar.dart';
 
@@ -16,13 +14,7 @@ class AuthView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit(
-        AuthRepoImp(
-          firebaseAuth: FirebaseAuth.instance,
-          googleSignIn: GoogleSignIn.instance,
-          facebookAuth: FacebookAuth.instance,
-        ),
-      ),
+      create: (context) => AuthCubit(getIt.get<AuthRepo>()),
       child: Scaffold(
         appBar: const AuthAppBar(),
         body: SafeArea(
