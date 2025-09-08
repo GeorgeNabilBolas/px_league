@@ -1,8 +1,14 @@
+import 'dart:io';
+
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 class InternetHandler {
-  static Future<bool> isInternetAvailable() async {
+  static Future<void> isInternetAvailable() async {
     final internetStatus = await InternetConnection().internetStatus;
-    return internetStatus == InternetStatus.connected;
+    if (internetStatus == InternetStatus.connected) {
+      return;
+    } else {
+      throw const SocketException('');
+    }
   }
 }

@@ -1,3 +1,5 @@
+import '../../../../Core/errors/firebase_exceptions/auth_exceptions.dart';
+import '../../../../Core/helpers/Internet_handler.dart';
 import '../../../../Core/networking/auth_result.dart';
 import 'user_profile_repo.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -20,15 +22,15 @@ class UserProfileRepoImpl implements UserProfileRepo {
   @override
   Future<AuthResult<void>> deleteAccount() async {
     try {
+      await InternetHandler.isInternetAvailable();
       final googleUser = await _googleSignIn.authenticate();
       final googleAuth = googleUser.authentication;
       final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
       await _firebaseAuth.currentUser?.reauthenticateWithCredential(credential);
       await _firestore.collection('users').doc(_firebaseAuth.currentUser?.uid).delete();
-      await _firebaseAuth.currentUser?.delete();
-      return AuthSuccess<void>(null);
+      return AuthSuccess(await _firebaseAuth.currentUser?.delete());
     } catch (e) {
-      return AuthFailure<void>(HandleAuthExceptions.getAuthExceptionType(e));
+      return AuthFailure(HandleAuthExceptions.getAuthExceptionType(e));
     }
   }
 }

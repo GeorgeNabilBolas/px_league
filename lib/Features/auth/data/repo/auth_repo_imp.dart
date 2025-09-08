@@ -28,6 +28,8 @@ class AuthRepoImpl implements AuthRepo {
     String password,
   ) async {
     try {
+      await InternetHandler.isInternetAvailable();
+
       final result = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
@@ -44,6 +46,7 @@ class AuthRepoImpl implements AuthRepo {
     String password,
   ) async {
     try {
+      await InternetHandler.isInternetAvailable();
       final result = await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
@@ -57,6 +60,7 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<AuthResult<UserCredential>> signInWithFacebook() async {
     try {
+      await InternetHandler.isInternetAvailable();
       final LoginResult loginResult = await _facebookAuth.login();
       final credential = FacebookAuthProvider.credential(
         loginResult.accessToken?.tokenString ?? '',
@@ -70,6 +74,7 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<AuthResult<UserCredential>> signInWithGoogle() async {
     try {
+      await InternetHandler.isInternetAvailable();
       final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
       final GoogleSignInAuthentication googleAuth = googleUser.authentication;
       final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
@@ -82,6 +87,7 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<AuthResult<void>> resetPassword(String email) async {
     try {
+      await InternetHandler.isInternetAvailable();
       await _firebaseAuth.sendPasswordResetEmail(email: email);
       return AuthSuccess<void>(null);
     } catch (e) {

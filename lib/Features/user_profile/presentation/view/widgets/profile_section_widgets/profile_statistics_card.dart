@@ -14,7 +14,7 @@ class ProfileStatisticsCard extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
       decoration: BoxDecoration(
-        color: AppColors.mediumGreen,
+        color: AppColors.darkGold,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(

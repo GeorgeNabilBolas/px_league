@@ -8,17 +8,14 @@ import 'package:go_router/go_router.dart';
 
 import '../../Features/auth/presentation/cubit/auth/auth_cubit.dart';
 import '../di/di.dart';
-import '../errors/firebase_exceptions/auth_exceptions.dart';
 import '../models/auth_modal.dart';
 import '../routes/app_routes.dart';
 import 'custom_ar_snackbar.dart';
-import 'Internet_handler.dart';
 
 Future<void> customAuthHandler(
   BuildContext context, {
   required AuthModal authModal,
 }) async {
-  _checkInternetConnection(context);
   final authCubit = BlocProvider.of<AuthCubit>(context);
   if (authCubit.state is AuthLoading || authCubit.state is AuthSuccess) {
     return;
@@ -93,12 +90,4 @@ void _authSuccessHandler(
 void _resetPasswordSuccessHandler(BuildContext context) {
   customArSnackBar(context, 'تم ارسال رابط التحقق إلى بريدك الالكتروني');
   Navigator.pop(context);
-}
-
-void _checkInternetConnection(BuildContext context) async {
-  final internetAvailable = await InternetHandler.isInternetAvailable();
-  if (!context.mounted) return;
-  if (!internetAvailable) {
-    customArSnackBar(context, const NoInternetException().message);
-  }
 }
