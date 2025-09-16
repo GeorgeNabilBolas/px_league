@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class AppColors {
   static const darkGreen = Color(0xff095644);
   static const mediumGreen = Color(0xff588C7F);
-  static const lightGreen = Color(0xffD1DFDC);
+  static final lightGreen = Colors.green[50];
   static const white = Color(0xFFFFFFFF);
   static const darkSilver = Color(0xff8F8F8F);
   static const mediumSilver = Color(0xffE4E7EB);

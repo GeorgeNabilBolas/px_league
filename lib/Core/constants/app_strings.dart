@@ -68,6 +68,8 @@ class AppStrings {
   static const accuracy = "الدقة";
   static const attempts = "المحاولات";
   static const edit = "تعديل";
+  static const editProfileTitle = "تعديل الملف الشخصي";
+  static const editProfileAlert = "هل انت متأكد؟";
   static const privacy = "الخصوصية والأمان";
   static const support = "الدعم والمساعدة";
   static const rateApp = "تقييم التطبيق";

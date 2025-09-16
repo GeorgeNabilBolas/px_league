@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'profile_image_widget.dart';
+import '../../../../../../Core/widgets/custom_profile_image.dart';
+import '../../../cubit/user_profile/user_profile_cubit.dart';
 import 'profile_name_and_email_widget.dart';
 
 class ProfileUserDataWidget extends StatelessWidget {
@@ -11,12 +14,18 @@ class ProfileUserDataWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      spacing: 15.w,
-      children: const [
-        ProfileImage(),
-        Expanded(child: ProfileNameAndEmailWidget()),
-      ],
+    return BlocBuilder<UserProfileCubit, UserProfileState>(
+      builder: (context, state) {
+        return Row(
+          spacing: 15.w,
+          children: [
+            CustomProfileImage(
+              imageUrl: FirebaseAuth.instance.currentUser?.photoURL ?? '',
+            ),
+            Expanded(child: ProfileNameAndEmailWidget()),
+          ],
+        );
+      },
     );
   }
 }

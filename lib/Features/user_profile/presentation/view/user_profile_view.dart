@@ -19,13 +19,12 @@ class UserProfileView extends StatelessWidget {
       child: Scaffold(
         appBar: const CustomAppBar(),
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
               child: Column(
                 spacing: 20.h,
                 children: const [
-                  SizedBox(height: 20),
                   ProfileSectionView(),
                   MenuSectionView(),
                   Divider(color: AppColors.mediumGreen),

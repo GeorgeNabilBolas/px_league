@@ -7,15 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../Features/auth/presentation/cubit/auth/auth_cubit.dart';
-import '../di/di.dart';
 import '../models/auth_modal.dart';
 import '../routes/app_routes.dart';
 import 'custom_ar_snackbar.dart';
 
-Future<void> customAuthHandler(
+void customAuthHandler(
   BuildContext context, {
   required AuthModal authModal,
-}) async {
+}) {
   final authCubit = BlocProvider.of<AuthCubit>(context);
   if (authCubit.state is AuthLoading || authCubit.state is AuthSuccess) {
     return;
@@ -79,10 +78,9 @@ void _authSuccessHandler(
   if (type == SocialAuthType.resetPassword) {
     _resetPasswordSuccessHandler(context);
   } else {
-    final users = getIt.get<FirebaseFirestore>().collection('users');
-    final userDoc = users.doc(getIt.get<FirebaseAuth>().currentUser!.uid);
-    userDoc.set({}, SetOptions(merge: true));
-    context.go(AppRoutes.userProfileRoute);
+    if (context.mounted) {
+      context.go(AppRoutes.mainPageRoute);
+    }
   }
   subscription.cancel();
 }

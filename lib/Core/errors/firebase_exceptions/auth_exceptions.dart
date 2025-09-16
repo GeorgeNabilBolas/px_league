@@ -9,6 +9,12 @@ class UserNotFoundException extends AuthException {
   String get message => 'لا يوجد حساب بهذا البريد الالكتروني';
 }
 
+class NoDataException extends AuthException {
+  const NoDataException() : super();
+  @override
+  String get message => 'لا يوجد بيانات';
+}
+
 class WrongPasswordException extends AuthException {
   const WrongPasswordException() : super();
   @override

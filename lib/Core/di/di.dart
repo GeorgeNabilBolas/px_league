@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -7,8 +8,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../Features/auth/data/repo/auth_repo.dart';
 import '../../Features/auth/data/repo/auth_repo_imp.dart';
+import '../../Features/main_page/data/repo/main_page_repo.dart';
+import '../../Features/main_page/data/repo/main_page_repo_impl.dart';
 import '../../Features/user_profile/data/repo/user_profile_repo.dart';
 import '../../Features/user_profile/data/repo/user_profile_repo_impl.dart';
+import '../networking/api_services.dart';
 
 final getIt = GetIt.instance;
 
@@ -17,6 +21,9 @@ void setupDI() {
   getIt.registerSingleton<FirebaseAuth>(FirebaseAuth.instance);
   getIt.registerSingleton<GoogleSignIn>(GoogleSignIn.instance);
   getIt.registerSingleton<FacebookAuth>(FacebookAuth.instance);
+  getIt.registerSingleton<Dio>(Dio());
+  getIt.registerSingleton<ApiService>(ApiService(getIt.get<Dio>()));
+  getIt.registerSingleton<MainPageRepo>(MainPageRepoImpl(getIt.get<ApiService>()));
   getIt.registerSingleton<AuthRepo>(
     AuthRepoImpl(
       firebaseAuth: getIt.get<FirebaseAuth>(),

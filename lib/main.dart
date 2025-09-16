@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await GoogleSignIn.instance.initialize();
@@ -31,10 +31,13 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, _) => MaterialApp.router(
         routerConfig: router,
+
         title: 'PX League',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Cairo',
+          iconTheme: const IconThemeData(color: AppColors.darkGreen),
+          appBarTheme: const AppBarTheme(backgroundColor: AppColors.white),
 
           colorScheme: ColorScheme.fromSeed(seedColor: AppColors.darkGreen),
           scaffoldBackgroundColor: Colors.white,

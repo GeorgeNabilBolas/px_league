@@ -17,14 +17,14 @@ class AuthSocial extends StatelessWidget {
       children: [
         CustomIconButton(
           iconPath: AppAssets.googleIcon,
-          onTap: () async => await customAuthHandler(
+          onTap: () => customAuthHandler(
             context,
             authModal: const AuthModal(type: SocialAuthType.google),
           ),
         ),
         CustomIconButton(
           iconPath: AppAssets.facebookIcon,
-          onTap: () async => await customAuthHandler(
+          onTap: () => customAuthHandler(
             context,
             authModal: const AuthModal(type: SocialAuthType.facebook),
           ),

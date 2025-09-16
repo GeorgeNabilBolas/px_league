@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -23,64 +24,89 @@ class AuthRepoImpl implements AuthRepo {
   final FacebookAuth _facebookAuth;
 
   @override
-  Future<AuthResult<UserCredential>> signUpWithEmailAndPassword(
+  Future<AuthResult<void>> signUpWithEmailAndPassword(
     String email,
     String password,
   ) async {
     try {
       await InternetHandler.isInternetAvailable();
-
-      final result = await _firebaseAuth.createUserWithEmailAndPassword(
+      await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return AuthSuccess<UserCredential>(result);
+      await FirebaseFirestore.instance.collection('users').doc(_firebaseAuth.currentUser?.uid).set({
+        'email': _firebaseAuth.currentUser?.email,
+        'displayName': _firebaseAuth.currentUser?.displayName,
+        'photoURL': _firebaseAuth.currentUser?.photoURL,
+        'uid': _firebaseAuth.currentUser?.uid,
+      });
+      return AuthSuccess<void>(null);
     } catch (e) {
-      return AuthFailure<UserCredential>(HandleAuthExceptions.getAuthExceptionType(e));
+      return AuthFailure<void>(HandleAuthExceptions.getAuthExceptionType(e));
     }
   }
 
   @override
-  Future<AuthResult<UserCredential>> logInWithEmailAndPassword(
+  Future<AuthResult<void>> logInWithEmailAndPassword(
     String email,
     String password,
   ) async {
     try {
       await InternetHandler.isInternetAvailable();
-      final result = await _firebaseAuth.signInWithEmailAndPassword(
+      await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return AuthSuccess<UserCredential>(result);
+      await FirebaseFirestore.instance.collection('users').doc(_firebaseAuth.currentUser?.uid).set({
+        'email': _firebaseAuth.currentUser?.email,
+        'displayName': _firebaseAuth.currentUser?.displayName,
+        'photoURL': _firebaseAuth.currentUser?.photoURL,
+        'uid': _firebaseAuth.currentUser?.uid,
+      });
+      return AuthSuccess<void>(null);
     } catch (e) {
-      return AuthFailure<UserCredential>(HandleAuthExceptions.getAuthExceptionType(e));
+      return AuthFailure<void>(HandleAuthExceptions.getAuthExceptionType(e));
     }
   }
 
   @override
-  Future<AuthResult<UserCredential>> signInWithFacebook() async {
+  Future<AuthResult<void>> signInWithFacebook() async {
     try {
       await InternetHandler.isInternetAvailable();
       final LoginResult loginResult = await _facebookAuth.login();
       final credential = FacebookAuthProvider.credential(
         loginResult.accessToken?.tokenString ?? '',
       );
-      return AuthSuccess<UserCredential>(await _firebaseAuth.signInWithCredential(credential));
+      await _firebaseAuth.signInWithCredential(credential);
+      await FirebaseFirestore.instance.collection('users').doc(_firebaseAuth.currentUser?.uid).set({
+        'email': _firebaseAuth.currentUser?.email,
+        'displayName': _firebaseAuth.currentUser?.displayName,
+        'photoURL': _firebaseAuth.currentUser?.photoURL,
+        'uid': _firebaseAuth.currentUser?.uid,
+      });
+      return AuthSuccess<void>(null);
     } catch (e) {
-      return AuthFailure<UserCredential>(HandleAuthExceptions.getAuthExceptionType(e));
+      return AuthFailure<void>(HandleAuthExceptions.getAuthExceptionType(e));
     }
   }
 
   @override
-  Future<AuthResult<UserCredential>> signInWithGoogle() async {
+  Future<AuthResult<void>> signInWithGoogle() async {
     try {
       await InternetHandler.isInternetAvailable();
       final GoogleSignInAccount googleUser = await _googleSignIn.authenticate();
       final GoogleSignInAuthentication googleAuth = googleUser.authentication;
       final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
-      return AuthSuccess<UserCredential>(await _firebaseAuth.signInWithCredential(credential));
+      await _firebaseAuth.signInWithCredential(credential);
+      await FirebaseFirestore.instance.collection('users').doc(_firebaseAuth.currentUser?.uid).set({
+        'email': _firebaseAuth.currentUser?.email,
+        'displayName': _firebaseAuth.currentUser?.displayName,
+        'photoURL': _firebaseAuth.currentUser?.photoURL,
+        'uid': _firebaseAuth.currentUser?.uid,
+      });
+      return AuthSuccess<void>(null);
     } catch (e) {
-      return AuthFailure<UserCredential>(HandleAuthExceptions.getAuthExceptionType(e));
+      return AuthFailure<void>(HandleAuthExceptions.getAuthExceptionType(e));
     }
   }
 

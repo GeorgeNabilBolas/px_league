@@ -52,12 +52,12 @@ class HandleNetworkExceptions {
 
   static NetworkExceptions _handleDioBadResponse(Response? response) {
     if (response?.data == null) {
-      return const UnexpectedErrorException();
+      return UnexpectedErrorException(response.toString());
     }
     try {
       return _getDioStatusCodeException(response);
     } catch (e) {
-      return const UnexpectedErrorException();
+      return UnexpectedErrorException(e.toString());
     }
   }
 
@@ -78,7 +78,7 @@ class HandleNetworkExceptions {
       case DioExceptionType.badCertificate:
         return const UnauthorizedRequestException("Bad certificate");
       default:
-        return const UnexpectedErrorException();
+        return UnexpectedErrorException(error.toString());
     }
   }
 
@@ -91,12 +91,12 @@ class HandleNetworkExceptions {
       } else if (error is FormatException) {
         return const FormatException();
       } else {
-        return const UnexpectedErrorException();
+        return UnexpectedErrorException(error.toString());
       }
     } on FormatException {
       return const FormatException();
     } catch (_) {
-      return const UnexpectedErrorException();
+      return UnexpectedErrorException(error.toString());
     }
   }
 
@@ -104,8 +104,8 @@ class HandleNetworkExceptions {
     if (error is Exception) {
       return _handleExceptionType(error);
     } else if (error.toString().contains("is not a subtype of")) {
-      return const UnableToProcessException();
+      return UnableToProcessException(error.toString());
     }
-    return const UnexpectedErrorException();
+    return UnexpectedErrorException(error.toString());
   }
 }
