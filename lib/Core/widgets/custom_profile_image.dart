@@ -1,36 +1,31 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../../Core/constants/app_assets.dart';
 import '../../../../../../Core/constants/app_colors.dart';
-import '../../../../../../Core/di/di.dart';
 
 class CustomProfileImage extends StatelessWidget {
   const CustomProfileImage({
     super.key,
     required this.imageUrl,
-    this.width,
-    this.height,
-    this.radius,
+    required this.radius,
+    this.backgroundColor,
   });
 
   final String? imageUrl;
-  final double? width;
-  final double? height;
-  final double? radius;
+  final double radius;
+  final Color? backgroundColor;
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: radius ?? 35.r,
-      backgroundColor: AppColors.mediumGreen,
+      radius: radius,
+      backgroundColor: backgroundColor ?? AppColors.mediumGreen,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
         child: CachedNetworkImage(
-          height: height ?? MediaQuery.sizeOf(context).width * 0.15,
-          width: width ?? MediaQuery.sizeOf(context).width * 0.15,
+          height: radius * 1.6,
+          width: radius * 1.6,
           fit: BoxFit.cover,
           imageUrl: imageUrl ?? '',
 

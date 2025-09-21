@@ -80,4 +80,6 @@ class AppStrings {
   static const cancel = "الغاء";
   static const deleteAccountTitle = "هل انت متأكد؟";
   static const deleteAccountButton = "حذف الحساب";
+  //Leaderboar
+  static const topLeaders = 'متصدرين القائمة';
 }

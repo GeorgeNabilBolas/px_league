@@ -6,11 +6,11 @@ import '../../../../Core/helpers/Internet_handler.dart';
 import '../../../../Core/helpers/date_formatter.dart';
 import '../../../../Core/models/matches_model.dart';
 import '../../../../Core/networking/api_result.dart';
-import 'main_page_repo.dart';
+import 'today_matches_repo.dart';
 
-class MainPageRepoImpl implements MainPageRepo {
+class TodayMatchesRepoImpl implements TodayMatchesRepo {
+  TodayMatchesRepoImpl(this._apiService);
   final ApiService _apiService;
-  MainPageRepoImpl(this._apiService);
   @override
   Future<ApiResult<List<MatchModel>>> getTodayMatches() async {
     try {

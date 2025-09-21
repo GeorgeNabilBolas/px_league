@@ -4,9 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../Core/constants/app_strings.dart';
 import '../../../../../Core/constants/app_text_styles.dart';
 import '../../../../../Core/di/di.dart';
+import '../../../../leaderboard_page/presentation/view/leaderboard_page_view.dart';
 import '../../../../today_matches_page/presentation/view/today_matches_page_view.dart';
-import '../../../data/repo/main_page_repo.dart';
-import '../../cubit/get_matches/get_matches_cubit.dart';
+import '../../../../today_matches_page/data/repo/today_matches_repo.dart';
+import '../../../../today_matches_page/presentation/cubit/today_matches_cubit/today_matches_cubit.dart';
 
 class PageViewBuilder extends StatelessWidget {
   const PageViewBuilder({
@@ -23,15 +24,10 @@ class PageViewBuilder extends StatelessWidget {
       controller: _pageController,
       children: [
         BlocProvider(
-          create: (context) => GetMatchesCubit(getIt<MainPageRepo>())..getTodayMatches(),
+          create: (context) => TodayMatchesCubit(getIt<TodayMatchesRepo>())..getTodayMatches(),
           child: const TodayMatchesPageView(),
         ),
-        Center(
-          child: Text(
-            AppStrings.leaderboard,
-            style: AppTextStyles.text24DarkGreenW700,
-          ),
-        ),
+        const LeaderboardPageView(),
         Center(
           child: Text(
             AppStrings.tournaments,

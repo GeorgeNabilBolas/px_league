@@ -8,6 +8,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../../../../Core/errors/firebase_exceptions/auth_exceptions.dart';
 import '../../../../Core/errors/firebase_exceptions/handle_auth_exceptions.dart';
 import '../../../../Core/helpers/Internet_handler.dart';
+import '../../../../Core/models/user_model.dart';
 import '../../../../Core/networking/auth_result.dart';
 import 'auth_repo.dart';
 
@@ -34,12 +35,7 @@ class AuthRepoImpl implements AuthRepo {
         email: email,
         password: password,
       );
-      await FirebaseFirestore.instance.collection('users').doc(_firebaseAuth.currentUser?.uid).set({
-        'email': _firebaseAuth.currentUser?.email,
-        'displayName': _firebaseAuth.currentUser?.displayName,
-        'photoURL': _firebaseAuth.currentUser?.photoURL,
-        'uid': _firebaseAuth.currentUser?.uid,
-      });
+      await _addUserToFirestore();
       return AuthSuccess<void>(null);
     } catch (e) {
       return AuthFailure<void>(HandleAuthExceptions.getAuthExceptionType(e));
@@ -53,16 +49,8 @@ class AuthRepoImpl implements AuthRepo {
   ) async {
     try {
       await InternetHandler.isInternetAvailable();
-      await _firebaseAuth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      await FirebaseFirestore.instance.collection('users').doc(_firebaseAuth.currentUser?.uid).set({
-        'email': _firebaseAuth.currentUser?.email,
-        'displayName': _firebaseAuth.currentUser?.displayName,
-        'photoURL': _firebaseAuth.currentUser?.photoURL,
-        'uid': _firebaseAuth.currentUser?.uid,
-      });
+      await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      await _addUserToFirestore();
       return AuthSuccess<void>(null);
     } catch (e) {
       return AuthFailure<void>(HandleAuthExceptions.getAuthExceptionType(e));
@@ -78,12 +66,7 @@ class AuthRepoImpl implements AuthRepo {
         loginResult.accessToken?.tokenString ?? '',
       );
       await _firebaseAuth.signInWithCredential(credential);
-      await FirebaseFirestore.instance.collection('users').doc(_firebaseAuth.currentUser?.uid).set({
-        'email': _firebaseAuth.currentUser?.email,
-        'displayName': _firebaseAuth.currentUser?.displayName,
-        'photoURL': _firebaseAuth.currentUser?.photoURL,
-        'uid': _firebaseAuth.currentUser?.uid,
-      });
+      await _addUserToFirestore();
       return AuthSuccess<void>(null);
     } catch (e) {
       return AuthFailure<void>(HandleAuthExceptions.getAuthExceptionType(e));
@@ -98,12 +81,7 @@ class AuthRepoImpl implements AuthRepo {
       final GoogleSignInAuthentication googleAuth = googleUser.authentication;
       final credential = GoogleAuthProvider.credential(idToken: googleAuth.idToken);
       await _firebaseAuth.signInWithCredential(credential);
-      await FirebaseFirestore.instance.collection('users').doc(_firebaseAuth.currentUser?.uid).set({
-        'email': _firebaseAuth.currentUser?.email,
-        'displayName': _firebaseAuth.currentUser?.displayName,
-        'photoURL': _firebaseAuth.currentUser?.photoURL,
-        'uid': _firebaseAuth.currentUser?.uid,
-      });
+      await _addUserToFirestore();
       return AuthSuccess<void>(null);
     } catch (e) {
       return AuthFailure<void>(HandleAuthExceptions.getAuthExceptionType(e));
@@ -119,5 +97,19 @@ class AuthRepoImpl implements AuthRepo {
     } catch (e) {
       return AuthFailure<void>(HandleAuthExceptions.getAuthExceptionType(e));
     }
+  }
+
+  Future<void> _addUserToFirestore() async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(_firebaseAuth.currentUser?.uid)
+        .set(
+          UserModel(
+            email: _firebaseAuth.currentUser?.email,
+            displayName: _firebaseAuth.currentUser?.displayName,
+            photoURL: _firebaseAuth.currentUser?.photoURL,
+            uid: _firebaseAuth.currentUser?.uid,
+          ).toMap(),
+        );
   }
 }

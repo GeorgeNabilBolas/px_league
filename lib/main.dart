@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -13,6 +14,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await GoogleSignIn.instance.initialize();
+  // FirebaseFirestore.instance.settings = const Settings(
+  //   persistenceEnabled: true,
+  //   cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
+  // );
   final router = await AppRoutesConfig.createRouter();
   Bloc.observer = AppObserver();
   setupDI();

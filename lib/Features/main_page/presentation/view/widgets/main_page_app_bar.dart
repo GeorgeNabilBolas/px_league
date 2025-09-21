@@ -27,8 +27,7 @@ class MainPageAppBar extends StatelessWidget implements PreferredSizeWidget {
               style: IconButton.styleFrom(padding: EdgeInsets.zero),
               icon: CustomProfileImage(
                 radius: kToolbarHeight * .4,
-                width: kToolbarHeight,
-                height: kToolbarHeight,
+
                 imageUrl: FirebaseAuth.instance.currentUser?.photoURL,
               ),
               onPressed: () => context.push(AppRoutes.userProfileRoute),

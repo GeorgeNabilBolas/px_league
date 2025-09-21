@@ -8,8 +8,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../Features/auth/data/repo/auth_repo.dart';
 import '../../Features/auth/data/repo/auth_repo_imp.dart';
-import '../../Features/main_page/data/repo/main_page_repo.dart';
-import '../../Features/main_page/data/repo/main_page_repo_impl.dart';
+import '../../Features/today_matches_page/data/repo/today_matches_repo.dart';
+import '../../Features/today_matches_page/data/repo/today_matches_repo_impl.dart';
 import '../../Features/user_profile/data/repo/user_profile_repo.dart';
 import '../../Features/user_profile/data/repo/user_profile_repo_impl.dart';
 import '../networking/api_services.dart';
@@ -23,7 +23,7 @@ void setupDI() {
   getIt.registerSingleton<FacebookAuth>(FacebookAuth.instance);
   getIt.registerSingleton<Dio>(Dio());
   getIt.registerSingleton<ApiService>(ApiService(getIt.get<Dio>()));
-  getIt.registerSingleton<MainPageRepo>(MainPageRepoImpl(getIt.get<ApiService>()));
+  getIt.registerSingleton<TodayMatchesRepo>(TodayMatchesRepoImpl(getIt.get<ApiService>()));
   getIt.registerSingleton<AuthRepo>(
     AuthRepoImpl(
       firebaseAuth: getIt.get<FirebaseAuth>(),

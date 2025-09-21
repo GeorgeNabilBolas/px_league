@@ -53,6 +53,7 @@ class _ProfileEditDialogState extends State<ProfileEditDialog> {
         children: [
           CustomProfileImage(
             imageUrl: getIt<FirebaseAuth>().currentUser!.photoURL ?? '',
+            radius: 35.r,
           ),
           TextField(
             controller: _nameController,

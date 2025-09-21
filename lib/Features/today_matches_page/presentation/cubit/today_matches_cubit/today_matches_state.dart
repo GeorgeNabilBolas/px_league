@@ -1,38 +1,43 @@
-part of 'get_matches_cubit.dart';
+part of 'today_matches_cubit.dart';
 
 @immutable
-sealed class GetMatchesState {
+sealed class TodayMatchesState extends Equatable {
+  const TodayMatchesState();
+
+  @override
+  List<Object?> get props => [];
+
   R when<R>({
     required R Function(List<MatchModel> matches) onSuccess,
     required R Function(NetworkExceptions error) onFailure,
   });
 }
 
-final class GetMatchesInitial extends GetMatchesState {
-  GetMatchesInitial();
+final class TodayMatchesInitial extends TodayMatchesState {
+  const TodayMatchesInitial();
   @override
   R when<R>({
     required R Function(List<MatchModel> matches) onSuccess,
     required R Function(NetworkExceptions error) onFailure,
   }) {
-    return const _LoadingWidget() as R;
+    return const CustomLoadingWidget() as R;
   }
 }
 
-final class GetMatchesLoading extends GetMatchesState {
-  GetMatchesLoading();
+final class TodayMatchesLoading extends TodayMatchesState {
+  const TodayMatchesLoading();
   @override
   R when<R>({
     required R Function(List<MatchModel> matches) onSuccess,
     required R Function(NetworkExceptions error) onFailure,
   }) {
-    return const _LoadingWidget() as R;
+    return const CustomLoadingWidget() as R;
   }
 }
 
-final class GetMatchesSuccess extends GetMatchesState {
+final class TodayMatchesSuccess extends TodayMatchesState {
+  const TodayMatchesSuccess({required this.matches});
   final List<MatchModel> matches;
-  GetMatchesSuccess({required this.matches});
   @override
   R when<R>({
     required R Function(List<MatchModel> matches) onSuccess,
@@ -40,11 +45,14 @@ final class GetMatchesSuccess extends GetMatchesState {
   }) {
     return onSuccess(matches);
   }
+
+  @override
+  List<Object?> get props => [matches];
 }
 
-final class GetMatchesFailure extends GetMatchesState {
+final class TodayMatchesFailure extends TodayMatchesState {
+  const TodayMatchesFailure({required this.error});
   final NetworkExceptions error;
-  GetMatchesFailure({required this.error});
   @override
   R when<R>({
     required R Function(List<MatchModel> matches) onSuccess,
@@ -52,15 +60,7 @@ final class GetMatchesFailure extends GetMatchesState {
   }) {
     return onFailure(error);
   }
-}
-
-class _LoadingWidget extends StatelessWidget {
-  const _LoadingWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
-  }
+  List<Object?> get props => [error];
 }

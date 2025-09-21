@@ -21,6 +21,7 @@ class ProfileUserDataWidget extends StatelessWidget {
           children: [
             CustomProfileImage(
               imageUrl: FirebaseAuth.instance.currentUser?.photoURL ?? '',
+              radius: 35.r,
             ),
             Expanded(child: ProfileNameAndEmailWidget()),
           ],
