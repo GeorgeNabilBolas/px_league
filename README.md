@@ -1,37 +1,40 @@
 # ⚽ PX League
 
-**PX League** is a modern Flutter application that provides football (soccer) league insights, match details, and leaderboard tracking — all wrapped in a clean, responsive UI.  
-It integrates Firebase Authentication, Firestore, and third-party login (Google & Facebook), providing a full-featured sports platform experience.
+**PX League** is a modern Flutter application that provides real-time football (soccer) league updates — including match results, leaderboards, tournaments, and player insights.  
+It integrates **Firebase Authentication**, **Firestore**, **Hive caching**, and **third-party login (Google & Facebook)**, offering a seamless, data-driven sports experience.
 
 ---
 
 ## 🚀 Features
 
-- 🏆 **League Standings & Matches**
-  - View live and upcoming matches.
-  - Check team logos, names, and match times.
+### 🏆 League & Matches
+- Browse live and upcoming matches.
+- Check teams, leagues, and match times.
+- Offline match caching with Hive for faster reloads.
 
-- 👤 **User Authentication**
-  - Email & password login.
-  - Google and Facebook sign-in.
-  - Forgot and reset password flow.
+### 👤 Authentication System
+- Email & password login.
+- Google and Facebook sign-in.
+- Reset and change password with Firebase Authentication.
 
-- 📱 **Onboarding Experience**
-  - Beautiful intro screens for new users.
+### 📱 Onboarding Experience
+- Interactive intro screens for first-time users.
+- Dynamic navigation using **GoRouter**.
 
-- 👨‍💻 **User Profile**
-  - View and edit profile details.
-  - Manage account settings and logout.
-  - Delete or deactivate account securely.
+### 🧑‍💼 User Profile
+- View and edit personal info.
+- Logout, deactivate, or delete account securely.
+- Manage statistics and preferences.
 
-- 🖼 **Image Picker Demo**
-  - Choose and upload images for profile or posts.
+### 📄 App Policies
+- Built-in **Privacy Policy** and **Terms & Conditions** screens.
 
-- ⚙️ **Modern Architecture**
-  - Clean, maintainable structure using **Cubit (BLoC)**.
-  - Dependency injection with **GetIt**.
-  - Network handling with **Dio**.
-  - Firebase integration across all platforms.
+### ⚙️ Architecture Highlights
+- **Clean Architecture + Cubit (BLoC)** for state management.
+- **Dependency Injection** via GetIt.
+- **Dio** for network handling with clean exception management.
+- **Hive** for secure local storage and caching.
+- **Custom reusable UI components** for consistency and maintainability.
 
 ---
 
@@ -40,23 +43,27 @@ It integrates Firebase Authentication, Firestore, and third-party login (Google 
 ```
 lib/
 ├── Core/
-│   ├── constants/         # App colors, paddings, text styles, etc.
+│   ├── constants/         # Colors, fonts, styles, paddings, durations
 │   ├── di/                # Dependency injection setup
-│   ├── errors/            # Exception and error handling
-│   ├── helpers/           # Utility helpers and validators
-│   ├── models/            # Shared models
-│   ├── networking/        # API services and results
-│   ├── routes/            # App navigation and route config
-│   ├── theme/             # App theming (light/dark)
-│   └── widgets/           # Shared custom widgets
+│   ├── errors/            # Firebase & network exception handling
+│   ├── helpers/           # Utilities, dialogs, validators, and snackbars
+│   ├── hive/              # Hive models, adapters, and registrars
+│   ├── models/            # Shared data models
+│   ├── networking/        # API & cache services
+│   ├── routes/            # GoRouter configurations
+│   ├── theme/             # App theming
+│   └── widgets/           # Shared UI widgets
 │
 ├── Features/
-│   ├── auth/              # Login, Sign-up, Reset Password
-│   ├── onboarding/        # Intro screens for new users
-│   ├── today_matches_page/# Match details and cards
-│   ├── leaderboard_page/  # League leaderboard
-│   ├── user_profile/      # Profile and settings
-│   └── tournaments_page/  # Tournament overview
+│   ├── auth/              # Login, sign-up, reset password
+│   ├── onboarding/        # Intro screens
+│   ├── today_matches_page/# Match details, league, and timing
+│   ├── leaderboard_page/  # League standings
+│   ├── tournaments_page/  # Tournament overview
+│   ├── user_profile/      # Profile, statistics, and account control
+│   ├── main_page/         # App main view and navigation bar
+│   ├── privacy_policy/    # Privacy Policy view
+│   └── terms_and_conditions/ # Terms and Conditions view
 │
 ├── firebase_options.dart   # Firebase configuration
 └── main.dart               # Entry point
@@ -66,53 +73,50 @@ lib/
 
 ## 🧩 Tech Stack
 
-| Category | Tools / Packages |
-|-----------|------------------|
+| Category | Packages |
+|-----------|-----------|
 | **State Management** | [flutter_bloc](https://pub.dev/packages/flutter_bloc) |
 | **Dependency Injection** | [get_it](https://pub.dev/packages/get_it) |
+| **Routing** | [go_router](https://pub.dev/packages/go_router) |
 | **Networking** | [dio](https://pub.dev/packages/dio) |
+| **Caching** | [hive_ce](https://pub.dev/packages/hive_ce), [hive_ce_flutter](https://pub.dev/packages/hive_ce_flutter) |
 | **Firebase** | firebase_core, firebase_auth, cloud_firestore |
 | **Authentication** | google_sign_in, flutter_facebook_auth |
 | **UI & Theming** | flutter_svg, flutter_screenutil |
-| **Local Storage** | shared_preferences |
+| **Storage** | shared_preferences |
 | **Connectivity** | internet_connection_checker_plus |
-| **Image Handling** | image_picker, cached_network_image |
+| **Utilities** | equatable, build_runner |
 
 ---
 
 ## ⚡ Getting Started
 
 ### 1. Clone the Repository
-
 ```bash
 git clone https://github.com/<your-username>/px_league.git
 cd px_league
 ```
 
 ### 2. Install Dependencies
-
 ```bash
 flutter pub get
 ```
 
-### 3. Configure Firebase
-
-Add your own Firebase configuration files:
-- `google-services.json` → `android/app/`
-- `GoogleService-Info.plist` → `ios/Runner/`
+### 3. Firebase Configuration
+Add your Firebase setup files:
+- `android/app/google-services.json`
+- `ios/Runner/GoogleService-Info.plist`
 
 ### 4. Run the App
-
 ```bash
 flutter run
 ```
 
 ---
 
-## 🧰 Generate Feature Structure (Optional)
+## 🧰 Optional: Generate a New Feature
 
-A Dart utility script `generate_structure.dart` helps you create a new feature folder with all required layers:
-
+You can generate a new feature structure using the built-in script:
 ```bash
 dart run generate_structure.dart <feature_name>
 ```
@@ -122,16 +126,22 @@ Example:
 dart run generate_structure.dart player_stats
 ```
 
-This generates a full structure under `lib/Features/player_stats/`.
+This automatically creates:
+```
+lib/Features/player_stats/
+  ├── data/
+  └── presentation/
+```
 
 ---
 
 ## 🖋 Developer Notes
 
-- Minimum SDK: **Flutter 3.9.0+**
-- Uses **Cairo** font family.
-- Designed with clean architecture in mind.
-- Follows **SOLID principles** and modular feature separation.
+- **Flutter SDK:** 3.9.0+
+- **Font:** Cairo (Light → Black)
+- **Architecture:** Clean, modular, scalable
+- **Linting:** Enforced via `flutter_lints` (strict)
+- **Build tools:** Custom splash screen, launcher icons
 
 ---
 
@@ -139,13 +149,13 @@ This generates a full structure under `lib/Features/player_stats/`.
 
 **George Nabil**  
 Electrical Engineer & Flutter Developer  
-📧 *[Add your email or GitHub link here]*  
+📧 george.nabil.bulis@gmail.com  
 
 ---
 
 ## 📄 License
 
-This project is currently private and not published to pub.dev.  
-You may freely modify or extend it for personal use.
+This project is private and not published to pub.dev.  
+You are free to modify and extend it for personal or educational use.
 
 ---
