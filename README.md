@@ -8,33 +8,33 @@ It integrates **Firebase Authentication**, **Firestore**, **Hive caching**, and 
 
 ### 📱 Onboarding Experience
 
-<img width="414" height="896" alt="3" src="https://github.com/user-attachments/assets/6f8baff0-e5ce-45b2-bb2d-996a94f684e8" />
-<img width="414" height="896" alt="2" src="https://github.com/user-attachments/assets/ae6e6ddf-77b3-4160-b678-108be53614df" />
-<img width="414" height="896" alt="1" src="https://github.com/user-attachments/assets/8806b6a5-fe84-4216-bac9-c657c7bcd0fe" />
-<img width="414" height="896" alt="4" src="https://github.com/user-attachments/assets/acd3e0ba-d426-4aee-bca3-e93fb8de85b2" />
+<img width="100" height="230" alt="3" src="https://github.com/user-attachments/assets/6f8baff0-e5ce-45b2-bb2d-996a94f684e8" />
+<img width="100" height="230" alt="2" src="https://github.com/user-attachments/assets/ae6e6ddf-77b3-4160-b678-108be53614df" />
+<img width="100" height="230" src="https://github.com/user-attachments/assets/8806b6a5-fe84-4216-bac9-c657c7bcd0fe" />
+<img width="100" height="230" alt="4" src="https://github.com/user-attachments/assets/acd3e0ba-d426-4aee-bca3-e93fb8de85b2" />
 
 ### 👤 Authentication System
 
-<img width="414" height="896" alt="6" src="https://github.com/user-attachments/assets/4db4fd24-7b61-4dee-b29a-1e52b7d837d9" />
-<img width="414" height="896" alt="5" src="https://github.com/user-attachments/assets/9b6051d7-c7be-4ac1-a550-d6ddd16f0329" />
-<img width="414" height="896" alt="7" src="https://github.com/user-attachments/assets/88a7205a-a24c-4d66-9c69-7a3d5a52b1d8" />
+<img width="100" height="230" alt="6" src="https://github.com/user-attachments/assets/4db4fd24-7b61-4dee-b29a-1e52b7d837d9" />
+<img width="100" height="230" alt="5" src="https://github.com/user-attachments/assets/9b6051d7-c7be-4ac1-a550-d6ddd16f0329" />
+<img width="100" height="230" alt="7" src="https://github.com/user-attachments/assets/88a7205a-a24c-4d66-9c69-7a3d5a52b1d8" />
 
 ### 🏆 League & Matches
 
-<img width="414" height="896" alt="9" src="https://github.com/user-attachments/assets/ce210b00-28b5-4306-9759-002f85952400" />
-<img width="414" height="896" alt="8" src="https://github.com/user-attachments/assets/65fe979d-20d0-4dca-9b44-abe03b10dea9" />
-<img width="414" height="896" alt="10" src="https://github.com/user-attachments/assets/27fa154e-569c-494c-b0f7-51a2efa153bd" />
-<img width="414" height="896" alt="12" src="https://github.com/user-attachments/assets/1d268e18-5d00-4f5b-b52d-9198664f54c5" />
-<img width="414" height="896" alt="11" src="https://github.com/user-attachments/assets/cffb2c12-b795-4e34-b3d8-b7fbb0a6ee7b" />
-<img width="414" height="896" alt="14" src="https://github.com/user-attachments/assets/d58f9b8c-165f-4866-b942-61b91ce9b3d7" />
-<img width="414" height="896" alt="13" src="https://github.com/user-attachments/assets/1d35cedc-80ca-42d6-bd9b-5fc44ec85a5f" />
-<img width="414" height="896" alt="16" src="https://github.com/user-attachments/assets/b059aa43-fb4a-4d47-ae2a-2231f95973e0" />
-<img width="414" height="896" alt="15" src="https://github.com/user-attachments/assets/2d9382f0-bc82-4e27-94fd-382fd1a24d72" />
+<img width="100" height="230" alt="9" src="https://github.com/user-attachments/assets/ce210b00-28b5-4306-9759-002f85952400" />
+<img width="100" height="230" alt="8" src="https://github.com/user-attachments/assets/65fe979d-20d0-4dca-9b44-abe03b10dea9" />
+<img width="100" height="230" alt="10" src="https://github.com/user-attachments/assets/27fa154e-569c-494c-b0f7-51a2efa153bd" />
+<img width="100" height="230" alt="12" src="https://github.com/user-attachments/assets/1d268e18-5d00-4f5b-b52d-9198664f54c5" />
+<img width="100" height="230" alt="11" src="https://github.com/user-attachments/assets/cffb2c12-b795-4e34-b3d8-b7fbb0a6ee7b" />
+<img width="100" height="230" alt="14" src="https://github.com/user-attachments/assets/d58f9b8c-165f-4866-b942-61b91ce9b3d7" />
+<img width="100" height="230" alt="13" src="https://github.com/user-attachments/assets/1d35cedc-80ca-42d6-bd9b-5fc44ec85a5f" />
+<img width="100" height="230" alt="16" src="https://github.com/user-attachments/assets/b059aa43-fb4a-4d47-ae2a-2231f95973e0" />
+<img width="100" height="230" alt="15" src="https://github.com/user-attachments/assets/2d9382f0-bc82-4e27-94fd-382fd1a24d72" />
 
 ### 🧑‍💼 User Profile
 
-<img width="414" height="896" alt="17" src="https://github.com/user-attachments/assets/045c3d69-823a-4e68-be9d-98f744177cbb" />
-<img width="414" height="896" alt="18" src="https://github.com/user-attachments/assets/b80c08b6-6280-41f8-adb8-22c7ee3bdb41" />
+<img width="100" height="230" alt="17" src="https://github.com/user-attachments/assets/045c3d69-823a-4e68-be9d-98f744177cbb" />
+<img width="100" height="230" alt="18" src="https://github.com/user-attachments/assets/b80c08b6-6280-41f8-adb8-22c7ee3bdb41" />
 
 ---
 
