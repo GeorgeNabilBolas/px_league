@@ -1,4 +1,4 @@
-<img width="414" height="896" alt="3" src="https://github.com/user-attachments/assets/dd51ac82-c76f-44e1-b08b-69df7f6ce6c7" /># ⚽ PX League
+# ⚽ PX League
 
 **PX League** is a modern Flutter application that provides real-time football (soccer) league updates — including match results, leaderboards, tournaments, and player insights.  
 It integrates **Firebase Authentication**, **Firestore**, **Hive caching**, and **third-party login (Google & Facebook)**, offering a seamless, data-driven sports experience.
