@@ -1,28 +1,40 @@
-# ⚽ PX League
+<img width="414" height="896" alt="3" src="https://github.com/user-attachments/assets/dd51ac82-c76f-44e1-b08b-69df7f6ce6c7" /># ⚽ PX League
 
 **PX League** is a modern Flutter application that provides real-time football (soccer) league updates — including match results, leaderboards, tournaments, and player insights.  
 It integrates **Firebase Authentication**, **Firestore**, **Hive caching**, and **third-party login (Google & Facebook)**, offering a seamless, data-driven sports experience.
 
 ---
 ## 📸 Screenshots
-<img width="414" height="896" alt="18" src="https://github.com/user-attachments/assets/389633a3-76f3-4db2-9221-d9a2a8cbbe7b" />
-<img width="414" height="896" alt="17" src="https://github.com/user-attachments/assets/9e73a351-be50-47ca-92e0-d35c5f41ae3f" />
-<img width="414" height="896" alt="16" src="https://github.com/user-attachments/assets/1707da88-9109-430e-8e65-58514915af08" />
-<img width="414" height="896" alt="15" src="https://github.com/user-attachments/assets/9403e80b-72f8-479f-a8db-9521da370765" />
-<img width="414" height="896" alt="14" src="https://github.com/user-attachments/assets/c682343a-245a-419f-8b58-6c829c8eba0d" />
-<img width="414" height="896" alt="13" src="https://github.com/user-attachments/assets/c92b8981-6c0e-40cd-b303-34b9b50f70b9" />
-<img width="414" height="896" alt="12" src="https://github.com/user-attachments/assets/8cc9565f-c56d-41a5-a227-797f1fb6763c" />
-<img width="414" height="896" alt="11" src="https://github.com/user-attachments/assets/2ee53526-9737-453f-a83b-a47bc83e3dc1" />
-<img width="414" height="896" alt="10" src="https://github.com/user-attachments/assets/6014e975-e12b-4491-adda-f6850b7076fe" />
-<img width="414" height="896" alt="9" src="https://github.com/user-attachments/assets/7a8e4afc-a19d-46c0-9eee-06158fa47a26" />
-<img width="414" height="896" alt="8" src="https://github.com/user-attachments/assets/3c0ad85e-68e2-46f7-b42b-7f6330462fee" />
-<img width="414" height="896" alt="7" src="https://github.com/user-attachments/assets/3eb5cb5f-ecab-462b-a907-3995e00b6ec8" />
-<img width="414" height="896" alt="6" src="https://github.com/user-attachments/assets/feed59ee-45bf-4a02-8b5c-7443e7b02b97" />
-<img width="414" height="896" alt="5" src="https://github.com/user-attachments/assets/cb3307aa-99d5-497a-90be-2cb20790f9b8" />
-<img width="414" height="896" alt="4" src="https://github.com/user-attachments/assets/f46f8647-eae3-4b3e-9b39-f1e59a6a592a" />
-<img width="414" height="896" alt="3" src="https://github.com/user-attachments/assets/95186049-53d7-4f8a-a8f2-27e7b3b48122" />
-<img width="414" height="896" alt="2" src="https://github.com/user-attachments/assets/dc250c4e-f89e-44e5-9e64-6b97f3d77166" />
-<img width="414" height="896" alt="1" src="https://github.com/user-attachments/assets/0425ba62-7789-425a-b39a-74dc96d05641" />
+
+### 📱 Onboarding Experienc
+
+<img width="414" height="896" alt="3" src="https://github.com/user-attachments/assets/6f8baff0-e5ce-45b2-bb2d-996a94f684e8" />
+<img width="414" height="896" alt="2" src="https://github.com/user-attachments/assets/ae6e6ddf-77b3-4160-b678-108be53614df" />
+<img width="414" height="896" alt="1" src="https://github.com/user-attachments/assets/8806b6a5-fe84-4216-bac9-c657c7bcd0fe" />
+<img width="414" height="896" alt="4" src="https://github.com/user-attachments/assets/acd3e0ba-d426-4aee-bca3-e93fb8de85b2" />
+
+### 👤 Authentication System
+
+<img width="414" height="896" alt="6" src="https://github.com/user-attachments/assets/4db4fd24-7b61-4dee-b29a-1e52b7d837d9" />
+<img width="414" height="896" alt="5" src="https://github.com/user-attachments/assets/9b6051d7-c7be-4ac1-a550-d6ddd16f0329" />
+<img width="414" height="896" alt="7" src="https://github.com/user-attachments/assets/88a7205a-a24c-4d66-9c69-7a3d5a52b1d8" />
+
+### 🏆 League & Matches
+
+<img width="414" height="896" alt="9" src="https://github.com/user-attachments/assets/ce210b00-28b5-4306-9759-002f85952400" />
+<img width="414" height="896" alt="8" src="https://github.com/user-attachments/assets/65fe979d-20d0-4dca-9b44-abe03b10dea9" />
+<img width="414" height="896" alt="10" src="https://github.com/user-attachments/assets/27fa154e-569c-494c-b0f7-51a2efa153bd" />
+<img width="414" height="896" alt="12" src="https://github.com/user-attachments/assets/1d268e18-5d00-4f5b-b52d-9198664f54c5" />
+<img width="414" height="896" alt="11" src="https://github.com/user-attachments/assets/cffb2c12-b795-4e34-b3d8-b7fbb0a6ee7b" />
+<img width="414" height="896" alt="14" src="https://github.com/user-attachments/assets/d58f9b8c-165f-4866-b942-61b91ce9b3d7" />
+<img width="414" height="896" alt="13" src="https://github.com/user-attachments/assets/1d35cedc-80ca-42d6-bd9b-5fc44ec85a5f" />
+<img width="414" height="896" alt="16" src="https://github.com/user-attachments/assets/b059aa43-fb4a-4d47-ae2a-2231f95973e0" />
+<img width="414" height="896" alt="15" src="https://github.com/user-attachments/assets/2d9382f0-bc82-4e27-94fd-382fd1a24d72" />
+
+### 🧑‍💼 User Profile
+
+<img width="414" height="896" alt="17" src="https://github.com/user-attachments/assets/045c3d69-823a-4e68-be9d-98f744177cbb" />
+<img width="414" height="896" alt="18" src="https://github.com/user-attachments/assets/b80c08b6-6280-41f8-adb8-22c7ee3bdb41" />
 
 ---
 
