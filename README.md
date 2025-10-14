@@ -6,7 +6,7 @@ It integrates **Firebase Authentication**, **Firestore**, **Hive caching**, and 
 ---
 ## 📸 Screenshots
 
-### 📱 Onboarding Experienc
+### 📱 Onboarding Experience
 
 <img width="414" height="896" alt="3" src="https://github.com/user-attachments/assets/6f8baff0-e5ce-45b2-bb2d-996a94f684e8" />
 <img width="414" height="896" alt="2" src="https://github.com/user-attachments/assets/ae6e6ddf-77b3-4160-b678-108be53614df" />
