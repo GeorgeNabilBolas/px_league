@@ -1,11 +1,8 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../../../Core/errors/firebase_exceptions/auth_exceptions.dart';
 import '../../../../Core/errors/firebase_exceptions/handle_auth_exceptions.dart';
 import '../../../../Core/helpers/Internet_handler.dart';
 import '../../../../Core/models/user_model.dart';
@@ -100,15 +97,20 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   Future<void> _addUserToFirestore() async {
+    final user = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(_firebaseAuth.currentUser?.uid)
+        .get();
     await FirebaseFirestore.instance
         .collection('users')
         .doc(_firebaseAuth.currentUser?.uid)
         .set(
           UserModel(
-            email: _firebaseAuth.currentUser?.email,
-            displayName: _firebaseAuth.currentUser?.displayName,
-            photoURL: _firebaseAuth.currentUser?.photoURL,
-            uid: _firebaseAuth.currentUser?.uid,
+            email: user.data()?['email'] ?? _firebaseAuth.currentUser?.email,
+            displayName: user.data()?['displayName'] ?? _firebaseAuth.currentUser?.displayName,
+            photoURL: user.data()?['photoURL'] ?? _firebaseAuth.currentUser?.photoURL,
+            uid: user.data()?['uid'] ?? _firebaseAuth.currentUser?.uid,
+            totalPoints: user.data()?['totalPoints'] ?? 25,
           ).toMap(),
         );
   }

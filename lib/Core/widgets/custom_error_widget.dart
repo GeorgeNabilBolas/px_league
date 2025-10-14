@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import '../constants/app_text_styles.dart';
 
 class CustomErrorWidget extends StatelessWidget {
-  final String message;
-  final VoidCallback onPressed;
 
   const CustomErrorWidget({
-    Key? key,
+    super.key,
     required this.message,
     required this.onPressed,
-  }) : super(key: key);
+  });
+  final String message;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {

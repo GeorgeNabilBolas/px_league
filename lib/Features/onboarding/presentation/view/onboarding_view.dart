@@ -15,10 +15,10 @@ class OnboardingView extends StatelessWidget {
     return BlocProvider(
       create: (context) => OnboardingCubit(),
       child: Scaffold(
-        appBar: OnboardingAppBar(),
+        appBar: const OnboardingAppBar(),
         body: SafeArea(
           minimum: EdgeInsets.only(bottom: 20.h),
-          child: Column(
+          child: const Column(
             children: [
               Expanded(child: OnboardingBody()),
               OnboardingBottomNavigationBar(),

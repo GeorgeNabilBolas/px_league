@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../Core/di/di.dart';
 import '../../data/repo/auth_repo.dart';
-import '../cubit/auth/auth_cubit.dart';
+import '../cubit/auth_cubit/auth_cubit.dart';
 import 'widgets/auth_widgets/auth_appbar.dart';
 
 class AuthView extends StatelessWidget {

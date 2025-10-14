@@ -29,12 +29,12 @@ class MenuSectionView extends StatelessWidget {
           backgroundColor: AppColors.darkGreen,
           onTap: () => context.push(AppRoutes.termsRoute),
         ),
-        CustomListTile(
+        const CustomListTile(
           icon: Icons.star_outline,
           title: AppStrings.rateApp,
           backgroundColor: AppColors.darkGreen,
         ),
-        CustomListTile(
+        const CustomListTile(
           icon: Icons.share,
           title: AppStrings.shareApp,
           backgroundColor: AppColors.darkGreen,

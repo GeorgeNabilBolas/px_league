@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../Core/constants/app_colors.dart';
 import '../../../../../../Core/constants/app_text_styles.dart';
-import '../../../../../../Core/di/di.dart';
-import '../../../../../../Core/models/auth_modal.dart';
+import '../../../../../../Core/helpers/custom_ar_snackbar.dart';
+import '../../../../../../Core/helpers/custom_loading_dialog.dart';
+import '../../../../../../Core/routes/app_routes.dart';
 import '../../../../../../Core/widgets/custom_button.dart';
-import '../../../../../../Core/helpers/custom_auth_handler.dart';
+import '../../../cubit/auth_cubit/auth_cubit.dart';
 
 class LoginFormButton extends StatelessWidget {
   const LoginFormButton({
@@ -29,13 +32,9 @@ class LoginFormButton extends StatelessWidget {
       onTap: () async {
         final isValid = formKey.currentState!.validate();
         if (isValid) {
-          customAuthHandler(
-            context,
-            authModal: AuthModal(
-              type: SocialAuthType.loginWithEmailAndPassword,
-              email: emailController.text,
-              password: passwordController.text,
-            ),
+          await context.read<AuthCubit>().logInWithEmailAndPassword(
+            emailController.text,
+            passwordController.text,
           );
         }
       },

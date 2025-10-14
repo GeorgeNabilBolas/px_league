@@ -12,11 +12,11 @@ import '../../../data/repo/today_matches_repo.dart';
 part 'today_matches_state.dart';
 
 class TodayMatchesCubit extends Cubit<TodayMatchesState> {
-  TodayMatchesCubit(this._mainPageRepo) : super(TodayMatchesInitial());
+  TodayMatchesCubit(this._mainPageRepo) : super(const TodayMatchesInitial());
   final TodayMatchesRepo _mainPageRepo;
 
   Future<void> getTodayMatches() async {
-    emit(TodayMatchesLoading());
+    emit(const TodayMatchesLoading());
     final result = await _mainPageRepo.getTodayMatches();
     result.when(
       onSuccess: (matches) => emit(TodayMatchesSuccess(matches: matches)),

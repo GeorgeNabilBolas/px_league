@@ -5,10 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../Core/constants/app_colors.dart';
 import '../../../../Core/constants/app_strings.dart';
 import '../../../../Core/constants/app_text_styles.dart';
+import '../../../../Core/di/di.dart';
+import '../../../../Core/helpers/custom_ar_snackbar.dart';
 import '../../../../Core/models/user_model.dart';
+import '../../../../Core/networking/user_cache_services.dart';
 import '../../../../Core/widgets/custom_error_widget.dart';
 import '../../../../Core/widgets/custom_profile_image.dart';
-import '../../data/repo/leaderboard_page_repo_impl.dart';
 import '../cubit/leader_board_page_cubit/leader_board_page_cubit_cubit.dart';
 
 class LeaderboardPageView extends StatelessWidget {
@@ -16,13 +18,10 @@ class LeaderboardPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: BlocProvider(
-        create: (context) => LeaderBoardPageCubit(LeaderboardPageRepoImpl())..getTopUsers(),
-        child: const Directionality(
-          textDirection: TextDirection.rtl,
-          child: LeaderBoardPageBody(),
-        ),
+    return const SafeArea(
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: LeaderBoardPageBody(),
       ),
     );
   }
@@ -39,50 +38,70 @@ class LeaderBoardPageBody extends StatelessWidget {
       builder: (context, state) {
         return state.when(
           onSuccess: (users) => SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // ---------- Top Leaders ----------
-                TopLeadersWidget(topUsers: users),
-                const SizedBox(height: 24),
-
-                // ---------- All Leaders ----------
-                Text(
-                  'جميع المتصدرين',
-                  style: AppTextStyles.text14DarkGreenW700,
-                ),
-                const SizedBox(height: 12),
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: users.length,
-                  separatorBuilder: (_, _) => const SizedBox(height: 8),
-                  itemBuilder: (context, index) {
-                    return LeaderItem(
-                      rank: index + 1,
-                      name: users[index].displayName ?? 'Annonymos User',
-                      points: users[index].totalPoints.toString(),
-                      color: _getColorByRank(index + 1),
-                    );
-                  },
-                ),
-              ],
-            ),
+            child: TopLeadersViewWidget(users: users),
           ),
-          onError: (message) => CustomErrorWidget(
-            message: message,
-            onPressed: () {
-              context.read<LeaderBoardPageCubit>().getTopUsers();
-            },
-          ),
+          onError: (message) {
+            final cachedData = getIt<UserCacheService>().getFromCache();
+            if (cachedData != null) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                customArSnackBar(context, message);
+              });
+              return SingleChildScrollView(
+                child: TopLeadersViewWidget(users: cachedData.data),
+              );
+            }
+            return CustomErrorWidget(
+              message: message,
+              onPressed: () {
+                context.read<LeaderBoardPageCubit>().getTopUsers();
+              },
+            );
+          },
         );
       },
     );
   }
 }
 
-class TopLeadersWidget extends StatelessWidget {
-  const TopLeadersWidget({
+class TopLeadersViewWidget extends StatelessWidget {
+  const TopLeadersViewWidget({super.key, required this.users});
+  final List<UserModel> users;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // ---------- Top Leaders ----------
+        TopThreeViewWidget(topUsers: users),
+        const SizedBox(height: 24),
+
+        // ---------- All Leaders ----------
+        Text(
+          'جميع المتصدرين',
+          style: AppTextStyles.text14DarkGreenW700,
+        ),
+        const SizedBox(height: 12),
+        ListView.separated(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: users.length,
+          separatorBuilder: (_, _) => const SizedBox(height: 8),
+          itemBuilder: (context, index) {
+            return LeaderItem(
+              rank: index + 1,
+              name: users[index].displayName ?? 'Annonymos User',
+              points: users[index].totalPoints.toString(),
+              color: _getColorByRank(index + 1),
+            );
+          },
+        ),
+      ],
+    );
+  }
+}
+
+class TopThreeViewWidget extends StatelessWidget {
+  const TopThreeViewWidget({
     super.key,
     required this.topUsers,
   });
@@ -98,13 +117,13 @@ class TopLeadersWidget extends StatelessWidget {
       child: Column(
         spacing: 20.h,
         children: [
-          topLeaderTitle(),
+          const topLeaderTitle(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Expanded(
-                child: TopLeadersViewWidget(
+                child: TopThreeBuilder(
                   placeBackgroundColor: AppColors.darkSilver,
                   imageBackgroundColor: AppColors.mediumSilver,
                   user: topUsers[1],
@@ -113,7 +132,7 @@ class TopLeadersWidget extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: TopLeadersViewWidget(
+                child: TopThreeBuilder(
                   placeBackgroundColor: AppColors.darkGold,
                   imageBackgroundColor: AppColors.mediumGold,
                   user: topUsers[0],
@@ -123,7 +142,7 @@ class TopLeadersWidget extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: TopLeadersViewWidget(
+                child: TopThreeBuilder(
                   placeBackgroundColor: AppColors.darkBronze,
                   imageBackgroundColor: AppColors.mediumBronze,
                   user: topUsers[2],
@@ -140,8 +159,8 @@ class TopLeadersWidget extends StatelessWidget {
   }
 }
 
-class TopLeadersViewWidget extends StatelessWidget {
-  const TopLeadersViewWidget({
+class TopThreeBuilder extends StatelessWidget {
+  const TopThreeBuilder({
     super.key,
     required this.place,
     required this.size,
@@ -229,10 +248,6 @@ Color _getColorByRank(int rank) {
 }
 
 class LeaderItem extends StatelessWidget {
-  final int rank;
-  final String name;
-  final String points;
-  final Color color;
 
   const LeaderItem({
     super.key,
@@ -241,6 +256,10 @@ class LeaderItem extends StatelessWidget {
     required this.points,
     required this.color,
   });
+  final int rank;
+  final String name;
+  final String points;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {

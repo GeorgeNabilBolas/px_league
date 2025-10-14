@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../Core/constants/app_strings.dart';
 import '../../../../Core/routes/app_routes.dart';
+import '../cubit/auth_cubit/auth_cubit.dart';
 import 'auth_view.dart';
 import 'widgets/auth_widgets/auth_intro.dart';
 import 'widgets/auth_widgets/auth_social.dart';
@@ -19,21 +21,24 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AuthView(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        spacing: 16.h,
-        children: const [
-          AuthIntro(title: AppStrings.signupTitle, subTitle: AppStrings.signupSubTitle),
-          SignUpForm(),
-          AuthWith(),
-          AuthSocial(),
-          PoliciesAndTerms(),
-          AuthSwitcher(
-            title: AppStrings.alreadyHaveAccount,
-            routeName: AppStrings.login,
-            routePath: AppRoutes.loginRoute,
-          ),
-        ],
+      child: BlocListener<AuthCubit, AuthState>(
+        listener: (context, state) => state.handleState(context),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          spacing: 16.h,
+          children: const [
+            AuthIntro(title: AppStrings.signupTitle, subTitle: AppStrings.signupSubTitle),
+            SignUpForm(),
+            AuthWith(),
+            AuthSocial(),
+            PoliciesAndTerms(),
+            AuthSwitcher(
+              title: AppStrings.alreadyHaveAccount,
+              routeName: AppStrings.login,
+              routePath: AppRoutes.loginRoute,
+            ),
+          ],
+        ),
       ),
     );
   }

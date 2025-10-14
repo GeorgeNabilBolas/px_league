@@ -23,7 +23,7 @@ class ProfileUserDataWidget extends StatelessWidget {
               imageUrl: FirebaseAuth.instance.currentUser?.photoURL ?? '',
               radius: 35.r,
             ),
-            Expanded(child: ProfileNameAndEmailWidget()),
+            const Expanded(child: ProfileNameAndEmailWidget()),
           ],
         );
       },

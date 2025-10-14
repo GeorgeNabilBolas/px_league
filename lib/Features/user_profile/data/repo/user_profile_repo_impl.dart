@@ -1,6 +1,4 @@
-import 'dart:developer';
 
-import '../../../../Core/errors/firebase_exceptions/auth_exceptions.dart';
 import '../../../../Core/helpers/Internet_handler.dart';
 import '../../../../Core/helpers/validations/strings_handler.dart';
 import '../../../../Core/networking/auth_result.dart';
@@ -9,7 +7,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../../../Core/errors/firebase_exceptions/handle_auth_exceptions.dart';
-import '../../../../Core/di/di.dart';
 
 class UserProfileRepoImpl implements UserProfileRepo {
   const UserProfileRepoImpl({

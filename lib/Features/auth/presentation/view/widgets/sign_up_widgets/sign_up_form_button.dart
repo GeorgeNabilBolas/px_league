@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../../Core/constants/app_colors.dart';
 import '../../../../../../Core/constants/app_text_styles.dart';
-import '../../../../../../Core/di/di.dart';
 import '../../../../../../Core/helpers/custom_ar_snackbar.dart';
-import '../../../../../../Core/helpers/custom_auth_handler.dart';
-import '../../../../../../Core/models/auth_modal.dart';
+import '../../../../../../Core/helpers/custom_loading_dialog.dart';
+import '../../../../../../Core/routes/app_routes.dart';
 import '../../../../../../Core/widgets/custom_button.dart';
+import '../../../cubit/auth_cubit/auth_cubit.dart';
 
 class SignUpFormButton extends StatelessWidget {
   const SignUpFormButton({
@@ -38,14 +40,7 @@ class SignUpFormButton extends StatelessWidget {
           if (password != confirmPassword) {
             customArSnackBar(context, 'كلمة السر غير متطابقة');
           } else {
-            customAuthHandler(
-              context,
-              authModal: AuthModal(
-                type: SocialAuthType.signupWithEmailAndPassword,
-                email: email,
-                password: password,
-              ),
-            );
+            await context.read<AuthCubit>().signUpWithEmailAndPassword(email, password);
           }
         }
       },

@@ -9,7 +9,7 @@ import '../../../../../../Core/helpers/custom_ar_snackbar.dart';
 import '../../../../../../Core/helpers/custom_loading_dialog.dart';
 import '../../../../../../Core/routes/app_routes.dart';
 import '../../../cubit/user_profile/user_profile_cubit.dart';
-import 'package:px_league/Core/errors/firebase_exceptions/auth_exceptions.dart';
+import '../../../../../../Core/errors/firebase_exceptions/auth_exceptions.dart';
 
 class DeleteAccountActionButton extends StatelessWidget {
   const DeleteAccountActionButton({

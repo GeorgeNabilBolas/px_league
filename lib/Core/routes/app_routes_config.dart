@@ -9,7 +9,6 @@ import '../../Features/onboarding/presentation/view/onboarding_view.dart';
 import '../../Features/privacy_policy/presentation/view/privacy_policy_view.dart';
 import '../../Features/terms_and_conditions/presentation/view/terms_and_conditions_view.dart';
 import '../../Features/user_profile/presentation/view/user_profile_view.dart';
-import '../../Features/image_picker_demo/presentation/view/image_picker_demo_view.dart';
 import 'app_routes.dart';
 
 class AppRoutesConfig {

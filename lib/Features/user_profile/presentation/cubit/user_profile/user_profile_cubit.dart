@@ -1,8 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../../Core/errors/firebase_exceptions/auth_exceptions.dart';

@@ -1,8 +1,11 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../../Core/errors/firebase_exceptions/auth_exceptions.dart';
-import '../../../../../Core/errors/firebase_exceptions/handle_auth_exceptions.dart';
+import '../../../../../Core/helpers/custom_ar_snackbar.dart';
+import '../../../../../Core/helpers/custom_loading_dialog.dart';
+import '../../../../../Core/routes/app_routes.dart';
 import '../../../data/repo/auth_repo.dart';
 
 part 'auth_state.dart';
@@ -41,15 +44,6 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> signUpWithEmailAndPassword(String email, String password) async {
     emit(AuthLoading());
     final result = await authRepo.signUpWithEmailAndPassword(email, password);
-    result.when(
-      onSuccess: (_) => emit(AuthSuccess()),
-      onFailure: (exception) => emit(AuthFailure(exception)),
-    );
-  }
-
-  Future<void> resetPassword(String email) async {
-    emit(AuthLoading());
-    final result = await authRepo.resetPassword(email);
     result.when(
       onSuccess: (_) => emit(AuthSuccess()),
       onFailure: (exception) => emit(AuthFailure(exception)),

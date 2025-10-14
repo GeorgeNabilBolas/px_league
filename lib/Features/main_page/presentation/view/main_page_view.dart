@@ -27,7 +27,7 @@ class _MainPageViewState extends State<MainPageView> {
       appBar: const MainPageAppBar(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
-        onTap: _changePage,
+        onTap: (index) async => await _changePage(index),
         type: BottomNavigationBarType.fixed,
         selectedItemColor: AppColors.darkGreen,
         unselectedItemColor: AppColors.mediumGreen,
@@ -49,7 +49,7 @@ class _MainPageViewState extends State<MainPageView> {
     ];
   }
 
-  void _changePage(int index) {
+  Future<void> _changePage(int index) async {
     setState(() {
       _currentIndex = index;
       _pageController.animateToPage(

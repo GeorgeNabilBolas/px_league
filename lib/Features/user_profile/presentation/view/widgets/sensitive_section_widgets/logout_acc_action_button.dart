@@ -11,7 +11,7 @@ import '../../../../../../Core/routes/app_routes.dart';
 import '../../../../../../Core/widgets/custom_list_tile.dart';
 import '../../../../data/repo/user_profile_repo.dart';
 import '../../../cubit/user_profile/user_profile_cubit.dart';
-import 'package:px_league/Core/errors/firebase_exceptions/auth_exceptions.dart';
+import '../../../../../../Core/errors/firebase_exceptions/auth_exceptions.dart';
 
 class LogoutAccListTile extends StatelessWidget {
   const LogoutAccListTile({
