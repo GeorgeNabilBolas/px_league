@@ -21,8 +21,8 @@ It integrates **Firebase Authentication**, **Firestore**, **Hive caching**, and 
 
 ### 🏆 League & Matches
 
-<img width="100" height="230" alt="9" src="https://github.com/user-attachments/assets/ce210b00-28b5-4306-9759-002f85952400" />
-<img width="100" height="230" alt="8" src="https://github.com/user-attachments/assets/65fe979d-20d0-4dca-9b44-abe03b10dea9" />
+<img width="100" height="230" alt="8" src="https://github.com/user-attachments/assets/44c4b40e-cbca-4516-8f93-3b618018a550" />
+<img width="100" height="230" alt="9" src="https://github.com/user-attachments/assets/0087f16c-493f-4b4b-888a-58393acd0b56" />
 <img width="100" height="230" alt="10" src="https://github.com/user-attachments/assets/27fa154e-569c-494c-b0f7-51a2efa153bd" />
 <img width="100" height="230" alt="12" src="https://github.com/user-attachments/assets/1d268e18-5d00-4f5b-b52d-9198664f54c5" />
 <img width="100" height="230" alt="11" src="https://github.com/user-attachments/assets/cffb2c12-b795-4e34-b3d8-b7fbb0a6ee7b" />
