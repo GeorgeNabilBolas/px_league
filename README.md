@@ -34,7 +34,6 @@ It integrates **Firebase Authentication**, **Firestore**, **Hive caching**, and 
 ### 🧑‍💼 User Profile
 
 <img width="100" height="230" alt="17" src="https://github.com/user-attachments/assets/045c3d69-823a-4e68-be9d-98f744177cbb" />
-<img width="100" height="230" alt="18" src="https://github.com/user-attachments/assets/b80c08b6-6280-41f8-adb8-22c7ee3bdb41" />
 
 ---
 
