@@ -1,6 +1,6 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class EnvConfig {
+class ApiConfig {
   static final String apiKey = dotenv.env['RAPID_API_KEY'] ?? '';
 
   static const String apiHost = 'v3.football.api-sports.io';
