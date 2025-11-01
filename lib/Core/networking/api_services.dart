@@ -3,11 +3,11 @@ import 'env_config.dart';
 
 class ApiService {
   ApiService(this._dio) {
-    ApiConfig.validate();
+    EnvConfig.validate();
   }
   final Dio _dio;
 
-  final _url = 'https://${ApiConfig.apiHost}/fixtures/';
+  final _url = 'https://${EnvConfig.apiHost}/fixtures/';
 
   Future<Map<String, dynamic>> get({
     String? url,
@@ -19,8 +19,8 @@ class ApiService {
         queryParameters: queryParameters,
         options: Options(
           headers: {
-            'x-rapidapi-key': ApiConfig.apiKey,
-            'x-rapidapi-host': ApiConfig.apiHost,
+            'x-rapidapi-key': EnvConfig.apiKey,
+            'x-rapidapi-host': EnvConfig.apiHost,
           },
         ),
       );
