@@ -4,6 +4,38 @@
 It integrates **Firebase Authentication**, **Firestore**, **Hive caching**, and **third-party login (Google & Facebook)**, offering a seamless, data-driven sports experience.
 
 ---
+## 📸 Screenshots
+
+### 📱 Onboarding Experience
+
+<img width="100" height="230" alt="3" src="https://github.com/user-attachments/assets/6f8baff0-e5ce-45b2-bb2d-996a94f684e8" />
+<img width="100" height="230" alt="2" src="https://github.com/user-attachments/assets/ae6e6ddf-77b3-4160-b678-108be53614df" />
+<img width="100" height="230" src="https://github.com/user-attachments/assets/8806b6a5-fe84-4216-bac9-c657c7bcd0fe" />
+<img width="100" height="230" alt="4" src="https://github.com/user-attachments/assets/acd3e0ba-d426-4aee-bca3-e93fb8de85b2" />
+
+### 👤 Authentication System
+
+<img width="100" height="230" alt="6" src="https://github.com/user-attachments/assets/4db4fd24-7b61-4dee-b29a-1e52b7d837d9" />
+<img width="100" height="230" alt="5" src="https://github.com/user-attachments/assets/9b6051d7-c7be-4ac1-a550-d6ddd16f0329" />
+<img width="100" height="230" alt="7" src="https://github.com/user-attachments/assets/88a7205a-a24c-4d66-9c69-7a3d5a52b1d8" />
+
+### 🏆 League & Matches
+
+<img width="100" height="230" alt="8" src="https://github.com/user-attachments/assets/44c4b40e-cbca-4516-8f93-3b618018a550" />
+<img width="100" height="230" alt="9" src="https://github.com/user-attachments/assets/0087f16c-493f-4b4b-888a-58393acd0b56" />
+<img width="100" height="230" alt="10" src="https://github.com/user-attachments/assets/27fa154e-569c-494c-b0f7-51a2efa153bd" />
+<img width="100" height="230" alt="12" src="https://github.com/user-attachments/assets/1d268e18-5d00-4f5b-b52d-9198664f54c5" />
+<img width="100" height="230" alt="11" src="https://github.com/user-attachments/assets/cffb2c12-b795-4e34-b3d8-b7fbb0a6ee7b" />
+<img width="100" height="230" alt="13" src="https://github.com/user-attachments/assets/83ba8f10-6a89-4378-9ea1-8e30ee01d286" />
+<img width="100" height="230" alt="14" src="https://github.com/user-attachments/assets/fd4eb83a-46f8-468e-9404-282aa402ee5a" />
+<img width="100" height="230" alt="15" src="https://github.com/user-attachments/assets/57763854-a1ab-40b8-936a-9035e0699fe8" />
+
+
+### 🧑‍💼 User Profile
+
+<img width="100" height="230" alt="17" src="https://github.com/user-attachments/assets/045c3d69-823a-4e68-be9d-98f744177cbb" />
+
+---
 
 ## 🚀 Features
 
