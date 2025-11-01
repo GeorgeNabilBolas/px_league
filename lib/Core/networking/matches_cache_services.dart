@@ -12,8 +12,8 @@ class MatchesCacheService {
     await cacheBox.put('matches', data);
   }
 
-  bool isCacheDurationExpired(MatchCacheModel cacheData) {
-    final timestamp = DateTime.parse(cacheData.timestamp);
+  bool isCacheDurationExpired(String cacheDataTimestamp) {
+    final timestamp = DateTime.parse(cacheDataTimestamp);
     final isExpired = DateTime.now().difference(timestamp).inMinutes >= cacheDurationInMinute;
     return isExpired;
   }

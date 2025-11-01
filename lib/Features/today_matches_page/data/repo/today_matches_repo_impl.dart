@@ -1,7 +1,7 @@
+import '../../../../Core/errors/api_exceptions/network_exptions.dart';
 import '../../../../Core/networking/api_services.dart';
 
 import '../../../../Core/errors/api_exceptions/handle_network_exptions.dart';
-import '../../../../Core/errors/api_exceptions/network_exptions.dart';
 import '../../../../Core/helpers/Internet_handler.dart';
 import '../../../../Core/helpers/date_formatter.dart';
 import '../../../../Core/models/cache_models.dart';
@@ -10,37 +10,98 @@ import '../../../../Core/networking/api_result.dart';
 import '../../../../Core/networking/matches_cache_services.dart';
 import 'today_matches_repo.dart';
 
+// class TodayMatchesRepoImpl implements TodayMatchesRepo {
+//   TodayMatchesRepoImpl(this._apiService, this._cacheService);
+//   final ApiService _apiService;
+//   final MatchesCacheService _cacheService;
+//   @override
+//   Future<ApiResult<List<MatchModel>>> getTodayMatches() async {
+//     final cachedData = _cacheService.getFromCache();
+//     if (cachedData != null) {
+//       if (_cacheService.isCacheDurationExpired(cachedData)) {
+//         if (!await InternetHandler.isConnected) {
+//           return ApiFailure(const NoInternetConnectionException());
+//         }
+//         await _cacheService.deleteCache();
+//       } else {
+//         return ApiSuccess(cachedData.data);
+//       }
+//     }
+//     try {
+//       await InternetHandler.isInternetAvailable();
+//       final response = await _apiService.get(queryParameters: _queryParameters);
+//       final List<dynamic> allMatchesData = response['response'];
+//       final List<MatchModel> matchesList = allMatchesData
+//           .map((match) => MatchModel.fromJson(match))
+//           .toList();
+//       await _cacheService.saveToCache(
+//         MatchCacheModel(data: matchesList, timestamp: DateTime.now().toIso8601String()),
+//       );
+//       return ApiSuccess(matchesList);
+//     } catch (e) {
+//       return ApiFailure(HandleNetworkExceptions.getExceptionType(e));
+//     }
+//   }
+
+//   Map<String, String> get _queryParameters {
+//     return {
+//       'date': DateFormatter.formatDateYyyyMmDd(DateTime.now()),
+//       'timezone': 'Asia/Riyadh',
+//     };
+//   }
+// }
+
 class TodayMatchesRepoImpl implements TodayMatchesRepo {
   TodayMatchesRepoImpl(this._apiService, this._cacheService);
+
   final ApiService _apiService;
   final MatchesCacheService _cacheService;
+
   @override
   Future<ApiResult<List<MatchModel>>> getTodayMatches() async {
-    final cachedData = _cacheService.getFromCache();
-    if (cachedData != null) {
-      if (_cacheService.isCacheDurationExpired(cachedData)) {
+    return await _getMatchesFromCache() ?? await _getMatchesFromApi();
+  }
+
+  Future<ApiResult<List<MatchModel>>?> _getMatchesFromCache() async {
+    try {
+      final cachedData = _cacheService.getFromCache();
+      if (cachedData == null) return null;
+      if (_cacheService.isCacheDurationExpired(cachedData.timestamp)) {
         if (!await InternetHandler.isConnected) {
           return ApiFailure(const NoInternetConnectionException());
         }
         await _cacheService.deleteCache();
-      } else {
-        return ApiSuccess(cachedData.data);
+        return null;
       }
+      return ApiSuccess(cachedData.data);
+    } catch (_) {
+      return null;
     }
+  }
+
+  Future<ApiResult<List<MatchModel>>> _getMatchesFromApi() async {
     try {
       await InternetHandler.isInternetAvailable();
+
       final response = await _apiService.get(queryParameters: _queryParameters);
       final List<dynamic> allMatchesData = response['response'];
       final List<MatchModel> matchesList = allMatchesData
           .map((match) => MatchModel.fromJson(match))
           .toList();
-      await _cacheService.saveToCache(
-        MatchCacheModel(data: matchesList, timestamp: DateTime.now().toIso8601String()),
-      );
+      await _saveToCacheSafely(matchesList);
       return ApiSuccess(matchesList);
     } catch (e) {
       return ApiFailure(HandleNetworkExceptions.getExceptionType(e));
     }
+  }
+
+  Future<void> _saveToCacheSafely(List<MatchModel> matches) async {
+    await _cacheService.saveToCache(
+      MatchCacheModel(
+        data: matches,
+        timestamp: DateTime.now().toIso8601String(),
+      ),
+    );
   }
 
   Map<String, String> get _queryParameters {

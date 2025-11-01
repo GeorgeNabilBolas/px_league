@@ -26,7 +26,7 @@ void setupDI() {
   getIt.registerSingleton<FacebookAuth>(FacebookAuth.instance);
   getIt.registerSingleton<Dio>(Dio());
   getIt.registerSingleton<ApiService>(ApiService(getIt.get<Dio>()));
-  getIt.registerSingleton<MatchesCacheService>(MatchesCacheService(cacheDurationInMinute: 15));
+  getIt.registerSingleton<MatchesCacheService>(MatchesCacheService(cacheDurationInMinute: 1));
   getIt.registerSingleton<TodayMatchesRepo>(
     TodayMatchesRepoImpl(
       getIt.get<ApiService>(),
