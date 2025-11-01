@@ -99,11 +99,11 @@ class AuthRepoImpl implements AuthRepo {
   Future<void> _addUserToFirestore() async {
     final user = await FirebaseFirestore.instance
         .collection('users')
-        .doc(_firebaseAuth.currentUser?.uid)
+        .doc(_firebaseAuth.currentUser?.email)
         .get();
     await FirebaseFirestore.instance
         .collection('users')
-        .doc(_firebaseAuth.currentUser?.uid)
+        .doc(_firebaseAuth.currentUser?.email)
         .set(
           UserModel(
             email: user.data()?['email'] ?? _firebaseAuth.currentUser?.email,

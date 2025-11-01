@@ -2,26 +2,32 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 
+import 'env_config.dart';
 
 class ApiService {
-  ApiService(this._dio);
+  ApiService(this._dio) {
+    EnvConfig.validate();
+  }
   final Dio _dio;
 
-  final _url = 'https://v3.football.api-sports.io/fixtures/';
-  Future<Map<String, dynamic>> get({String? url, Map<String, String>? queryParameters}) async {
+  final _url = 'https://${EnvConfig.apiHost}/fixtures/';
+
+  Future<Map<String, dynamic>> get({
+    String? url,
+    Map<String, String>? queryParameters,
+  }) async {
     try {
       final response = await _dio.get(
         url ?? _url,
         queryParameters: queryParameters,
         options: Options(
           headers: {
-            'x-rapidapi-key': '726e51d7e1d2ec75ae3d2497d173e4cd',
-            'x-rapidapi-host': 'v3.football.api-sports.io',
+            'x-rapidapi-key': EnvConfig.apiKey,
+            'x-rapidapi-host': EnvConfig.apiHost,
           },
         ),
       );
-      log(response.realUri.toString());
-      return response.data;
+      return response.data as Map<String, dynamic>;
     } catch (e) {
       rethrow;
     }
